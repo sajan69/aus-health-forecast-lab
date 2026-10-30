@@ -89,3 +89,10 @@ jobs:
           python -m unittest discover -s forecast_tests -v
           aus-health-forecast --version
           aus-health-forecast validate examples/carer-national-sep2026.json
+          mkdir forecast-artifacts
+          aus-health-forecast evaluate examples/carer-national-sep2026.json --out forecast-artifacts/evaluation.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: forecast-evaluation-${{ matrix.python }}
+          path: forecast-artifacts/
+          retention-days: 14

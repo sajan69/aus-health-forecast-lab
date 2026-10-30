@@ -5,7 +5,6 @@ import hashlib
 import json
 import os
 from pathlib import Path
-import re
 import stat
 
 ROW_HASH = '6a72d3c5d9f5dac939c7173d5fc883cff4a28f5732e203e71954beb0c58b6c2c'
@@ -55,7 +54,10 @@ def load_series(path):
     if not isinstance(d, dict) or not REQUIRED <= d.keys() or d.keys() - REQUIRED - OPTIONAL:
         raise ForecastError('input_schema')
     expected = {'source_release': 'DSS September 2026', 'series': 'Carer Payment',
-                'geography': 'Australia', 'unit': 'published rounded recipient count'}
+                'geography': 'Australia', 'unit': 'published rounded recipient count',
+                'time_basis': 'last Friday of month; workbook dates label reporting month',
+                'rounding': 'nearest 5; source maps values 1..7 to 5; zero is actual zero',
+                'population': 'current including zero-rate, or suspended, on Centrelink system'}
     if type(d['schema_version']) is not int or d['schema_version'] != 1 or any(d[k] != v for k, v in expected.items()):
         raise ForecastError('unreviewed_source_or_unit')
     for key in ('time_basis', 'rounding', 'population'):
