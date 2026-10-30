@@ -31,6 +31,25 @@ class EvaluationIntegrationTests(unittest.TestCase):
                 for level in ('0.8','0.95'):
                     covered=sum(r['intervals'][level]['lower']<=r['actual']<=r['intervals'][level]['upper'] for r in rows)
                     self.assertEqual(covered,d['holdout_intervals'][h][level]['covered'])
+            from aus_health_forecast.contract import load_series
+            from aus_health_forecast.reports import html_report,csv_report
+            from html.parser import HTMLParser
+            import csv,io
+            d['source']['attribution']['title']='  ＝1+1'
+            d['warnings'].append('<img src=x onerror=alert(1)><script>alert(1)</script>')
+            page=html_report(load_series(source),d)
+            class Tags(HTMLParser):
+                def __init__(self): super().__init__(); self.tags=[]
+                def handle_starttag(self,tag,attrs): self.tags.append(tag)
+            parser=Tags(); parser.feed(page)
+            self.assertNotIn('script',parser.tags)
+            self.assertNotIn('img',parser.tags)
+            self.assertIn('&lt;img',page)
+            self.assertIn("default-src 'none'",page)
+            rows=list(csv.reader(io.StringIO(csv_report(d))))
+            self.assertEqual(len(rows),25)
+            self.assertTrue(rows[1][12].startswith("'"))
+            self.assertEqual(float(rows[1][6]),d['development']['last_value']['by_horizon']['1']['bias_prediction_minus_actual'])
             before=output.read_bytes()
             # Reject existing destinations before expensive computation too.
             denied=subprocess.run(args,capture_output=True,text=True,timeout=120)

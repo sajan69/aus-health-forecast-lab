@@ -1,0 +1,13 @@
+# Local data and output boundary
+
+The forecasting package is an offline research utility. It accepts only the reviewed September 2026 national Carer Payment projection, with 177 ordered monthly rows, known units and matching raw/projection hashes. It is not a generic patient-data importer. Hashes detect changes against the reviewed file; they do not authenticate the publisher or establish historical availability.
+
+Input is capped at 256 KiB, UTF-8 JSON with duplicate keys, floats, non-finite numbers, extra fields, missing counts and invalid types refused. Booleans are not counts. Row order, count range, rounding multiples and exact release hashes are checked before fitting. Input symlinks and non-regular files are refused. Parent directories and the local machine must be trusted; filesystem race resistance, encryption and hostile-user isolation are not provided.
+
+All models consume a training prefix. No arbitrary SQL, URLs, Python expressions, fitted-model pickle files or external covariate downloads are accepted. Numerical thread pools are limited to one during evaluation. Models and the experiment size are fixed; benchmark repeats are restricted to 1–3. Unsuccessful Holt optimisation and non-finite estimates fail explicitly. A failed run is not a successful forecast and no performance claim should be inferred from it.
+
+Exports are serialized and capped at 2 MiB before exclusive creation. New POSIX files are mode 0600; Windows ACLs remain the user's responsibility. Existing paths and symlinks are refused. A physical write failure can leave an incomplete output. Output folders must be trusted. No output is uploaded automatically.
+
+HTML escapes retained text, uses a fixed stylesheet hash in a restrictive Content Security Policy, and includes no scripts or remote assets. Source/licence links require deliberate navigation. CSV quotes every cell and prefixes formula-like strings, including whitespace and NFKC full-width forms, with an apostrophe. Numeric negative metrics remain numeric values. This is a mitigation, not a guarantee across spreadsheet applications. Review metadata before sharing; public aggregate provenance can still contain source annotations.
+
+Source acquisition is a separate fixed-URL audit, not part of model evaluation. Its document and download limits are described in [DATA](DATA.md). No raw patient records, private data, personal scores, clinical recommendations or benefit decisions are supported. The [research-scope assessment](RESEARCH_SCOPE.md) describes governance applicability and deployment exclusions. There is no network service, authentication system or production security certification here.

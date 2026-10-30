@@ -15,3 +15,8 @@ build/
 dist/
 *.egg-info/
 forecast-artifacts/
+browser/node_modules/
+/evaluation.json
+/report.html
+/metrics.csv
+/benchmark.json

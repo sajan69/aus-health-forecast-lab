@@ -91,7 +91,27 @@ jobs:
           aus-health-forecast validate examples/carer-national-sep2026.json
           mkdir forecast-artifacts
           aus-health-forecast evaluate examples/carer-national-sep2026.json --out forecast-artifacts/evaluation.json
+      - name: Render exports and measure the bounded workload
+        if: matrix.python == '3.12'
+        run: |
+          set -euo pipefail
+          aus-health-forecast evaluate examples/carer-national-sep2026.json --out forecast-artifacts/report.html --format html
+          aus-health-forecast evaluate examples/carer-national-sep2026.json --out forecast-artifacts/metrics.csv --format csv
+          aus-health-forecast benchmark examples/carer-national-sep2026.json --out forecast-artifacts/benchmark.json --repeats 3
+          python browser/make_probe.py
+      - uses: actions/setup-node@v4
+        if: matrix.python == '3.12'
+        with:
+          node-version: '24'
+      - name: Inspect static reports in Chromium
+        if: matrix.python == '3.12'
+        run: |
+          set -euo pipefail
+          npm ci --prefix browser --ignore-scripts
+          npm exec --prefix browser -- playwright install --with-deps chromium
+          npm test --prefix browser
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: forecast-evaluation-${{ matrix.python }}
           path: forecast-artifacts/

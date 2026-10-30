@@ -97,6 +97,10 @@ def load_series(path):
 
 def write_report(path, report):
     payload = (json.dumps(report, allow_nan=False, ensure_ascii=True, indent=2) + '\n').encode()
+    write_bytes(path, payload)
+
+
+def write_bytes(path, payload):
     if len(payload) > 2 * 1024 * 1024:
         raise ForecastError('report_size_limit')
     # Serialize and cap before exclusive creation. A physical write failure may
