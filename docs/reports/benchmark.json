@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "completed": true,
+  "completed_at": "2026-10-30T13:11:16.894233+00:00",
+  "workload": {
+    "months": 177,
+    "models": 4,
+    "development_origins": 91,
+    "holdout_origins": 22,
+    "horizons": [
+      1,
+      2,
+      3
+    ],
+    "candidate_point_predictions": 1356,
+    "series_end_predictions": 3
+  },
+  "source": {
+    "schema_version": 1,
+    "source_release": "DSS September 2026",
+    "series": "Carer Payment",
+    "geography": "Australia",
+    "unit": "published rounded recipient count",
+    "time_basis": "last Friday of month; workbook dates label reporting month",
+    "rounding": "nearest 5; source maps values 1..7 to 5; zero is actual zero",
+    "population": "current including zero-rate, or suspended, on Centrelink system",
+    "raw_sha256": "af25df58fec196687935f950c1802640394dbe381ecada03fc387edb70b60d52",
+    "projection_sha256": "6a72d3c5d9f5dac939c7173d5fc883cff4a28f5732e203e71954beb0c58b6c2c",
+    "attribution": {
+      "publisher": "Australian Government Department of Social Services",
+      "title": "DSS Income Support Recipients \u2013 Monthly Time Series",
+      "release": "September 2026",
+      "source_url": "https://data.gov.au/data/dataset/6ed2d8c0-0162-46da-bbfe-d493f6190af8/resource/d0472de2-0c75-45be-9093-7698a30f0e57/download/september-2026-dss-income-support-recipient-monthly-time-series.xlsx",
+      "catalog_url": "https://data.gov.au/data/api/3/action/package_show?id=dss-income-support-recipients-monthly-time-series",
+      "license": "CC BY 2.5 Australia",
+      "license_url": "https://creativecommons.org/licenses/by/2.5/au/",
+      "changes": "Selected national Carer Payment All recipients; renamed fields and normalised monthly labels; published totals unchanged.",
+      "endorsement": "No DSS endorsement implied."
+    },
+    "acquired_at": "2026-10-30T07:12:30.819182+00:00",
+    "evidence": {
+      "commit": "0af56c514d2bda4178ccfc4c4a487a8b408c56a4",
+      "run_url": "https://github.com/sajan69/aus-health-forecast-lab/actions/runs/41018651202"
+    },
+    "input_sha256": "d430e7601e2a635f3485ed270e248f0ca9b9e451840d10892b260ce6769dc313"
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "packages": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "pandas": "2.3.3",
+      "statsmodels": "0.15.0",
+      "scikit-learn": "1.9.1",
+      "threadpoolctl": "3.7.0"
+    },
+    "package_version": "0.1.0",
+    "threadpools": [
+      {
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.30",
+        "architecture": "SkylakeX"
+      },
+      {
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "version": null,
+        "architecture": null
+      },
+      {
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.30",
+        "architecture": "SkylakeX"
+      }
+    ]
+  },
+  "reported_logical_cpus": 9,
+  "samples": [
+    {
+      "repeat": 1,
+      "milliseconds": 2686.1043709998285,
+      "selected_model": "ridge_change",
+      "selected_holdout_mae": 719.9151189550952,
+      "development_records": 1092,
+      "holdout_records": 264
+    },
+    {
+      "repeat": 2,
+      "milliseconds": 2625.855625000213,
+      "selected_model": "ridge_change",
+      "selected_holdout_mae": 719.9151189550952,
+      "development_records": 1092,
+      "holdout_records": 264
+    },
+    {
+      "repeat": 3,
+      "milliseconds": 2738.5399559998405,
+      "selected_model": "ridge_change",
+      "selected_holdout_mae": 719.9151189550952,
+      "development_records": 1092,
+      "holdout_records": 264
+    }
+  ],
+  "median_milliseconds": 2686.1043709998285,
+  "method": {
+    "timer": "perf_counter wall milliseconds",
+    "included": "input read/strict parsing/hash validation, all fits/selection/calibration/metrics, environment metadata and series-end extrapolation",
+    "excluded": "CLI/dependency import, fixture acquisition, serialization/writes, assertions, browser, network/TLS",
+    "warmup": "no explicit warmup or cache clearing; prior tests and OS caches may benefit repeats",
+    "threads": "numerical pools limited to 1 within evaluation",
+    "limits": "single local client, shared host; not concurrent throughput or production capacity; no performance-improvement baseline"
+  },
+  "evidence": {
+    "execution": "Local installed wheel, not editable install",
+    "source_commit": "4ffb7b679b2cf745671cb97f4ca05c174c3ec98a",
+    "protocol_commit": "d2e32a519dace2eb4acfb45a0e9fee5cb76101b3",
+    "commands": [
+      "aus-health-forecast evaluate examples/carer-national-sep2026.json --out NEW_JSON",
+      "aus-health-forecast benchmark examples/carer-national-sep2026.json --out NEW_JSON --repeats 3"
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'sha256-eJ8/JvGdl6cOzYZF9ONE6y/ei6xmIQckmzFU/fssPrg='; base-uri 'none'; form-action 'none'"><meta name="referrer" content="no-referrer"><title>Carer Payment | Retrospective forecast research</title><style>body{font:16px system-ui,sans-serif;color:#153044;background:#f4f7f8;margin:0}main{max-width:1100px;margin:auto;padding:32px 20px}h1{font-size:2.4rem;line-height:1.1;max-width:800px}h2{margin-top:2rem}p{line-height:1.6}article,.notice{background:white;border:1px solid #d7e2e6;border-radius:12px;padding:20px;margin:18px 0}.notice{border-left:5px solid #be7923;background:#fff8ed}.eyebrow{color:#196b6d;font-weight:700;letter-spacing:.06em}.scroll{overflow-x:auto}table{border-collapse:collapse;min-width:650px;width:100%;font-size:.9rem}th,td{text-align:right;border-bottom:1px solid #d7e2e6;padding:12px}th:first-child,td:first-child{text-align:left}th{background:#edf3f4}svg{width:100%;height:auto;min-width:650px}summary{cursor:pointer;font-weight:600}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.8rem}li{margin:.8em 0;line-height:1.5}small{color:#435c69}@media(max-width:500px){main{padding:20px 12px}h1{font-size:1.9rem}article{padding:12px}}</style></head><body><main><p class="eyebrow">AUSTRALIAN AGGREGATE WELFARE RESEARCH</p><h1>How predictable is the national Carer Payment caseload?</h1><p>177 published monthly totals · January 2012–September 2026 · Australia</p><div class="notice"><strong>Research use only.</strong> Administrative recipient counts do not measure unmet caring need. These estimates must not determine individual benefits, adverse action or automatic resource allocation.</div><article><h2>Series-end extrapolation</h2><p>Basis: September 2026 observation, from the DSS September 2026 release. Publication and acquisition occur later. This is a historical-series-end extrapolation, not a live operational forecast.</p><div class="scroll"><svg viewBox="0 0 1000 320" role="img" aria-label="Published rounded national totals and three month series-end extrapolation with uncertainty bands"><title>National Carer Payment: series-end extrapolation</title><polygon points="847.31,108.21 881.54,91.11 915.77,70.62 950.00,49.58 950.00,130.93 915.77,121.96 881.54,113.72" fill="#d7e9e8"/><polygon points="847.31,108.21 881.54,94.78 915.77,84.35 950.00,73.13 950.00,107.38 915.77,108.22 881.54,110.05" fill="#a3ceca"/><polyline points="60.00,245.42 94.23,234.87 128.46,227.04 162.69,222.91 196.92,210.00 231.15,203.80 265.38,194.16 299.62,180.86 333.85,174.27 368.08,174.27 402.31,175.78 436.54,172.38 470.77,170.18 505.00,160.37 539.23,150.73 573.46,148.62 607.69,143.37 641.92,140.70 676.15,140.06 710.38,127.75 744.62,116.21 778.85,116.43 813.08,115.35 847.31,108.21" fill="none" stroke="#365c72" stroke-width="3"/><polyline points="847.31,108.21 881.54,102.41 915.77,96.29 950.00,90.26" fill="none" stroke="#087e80" stroke-width="3" stroke-dasharray="7 5"/><text x="60" y="300" font-size="14">2024-10</text><text x="790" y="300" font-size="14">Sep 2026</text><text x="900" y="300" font-size="14">Dec 2026</text><text x="5" y="25" font-size="13">342,606</text><text x="5" y="265" font-size="13">315,305</text></svg></div><p><small>Solid: published rounded totals. Dashed: Ridge change estimates. Bands: nominal 80% (dark) and 95% (light), without a coverage guarantee.</small></p><div class="scroll"><table><thead><tr><th>Reporting month</th><th>Estimate</th><th>Nominal 95% bounds</th></tr></thead><tbody><tr><td>2026-10</td><td>334,193</td><td>332,880–335,507</td></tr><tr><td>2026-11</td><td>334,905</td><td>331,923–337,887</td></tr><tr><td>2026-12</td><td>335,606</td><td>330,881–340,331</td></tr></tbody></table></div></article><article><h2>Reserved-period errors</h2><p>Model selected using development MAE through September 2024: <strong>Ridge change</strong>. The model choice stayed fixed during evaluation. Earlier holdout observations enter training only after their dates. Each horizon has 22 cases with overlapping targets.</p><div class="scroll"><table><thead><tr><th>Model</th><th>Months ahead</th><th>Cases</th><th>MAE</th><th>RMSE</th><th>Bias</th><th>MASE</th></tr></thead><tbody><tr><td>Last value</td><td>1</td><td>22</td><td>729.5</td><td>883.6</td><td>-711.4</td><td>0.081</td></tr><tr><td>Last value</td><td>2</td><td>22</td><td>1,414.1</td><td>1,625.7</td><td>-1,398.2</td><td>0.156</td></tr><tr><td>Last value</td><td>3</td><td>22</td><td>2,067.0</td><td>2,282.1</td><td>-2,067.0</td><td>0.228</td></tr><tr><td>Seasonal naive</td><td>1</td><td>22</td><td>10,376.6</td><td>10,822.9</td><td>-10,376.6</td><td>1.145</td></tr><tr><td>Seasonal naive</td><td>2</td><td>22</td><td>10,124.3</td><td>10,592.1</td><td>-10,124.3</td><td>1.118</td></tr><tr><td>Seasonal naive</td><td>3</td><td>22</td><td>9,845.0</td><td>10,310.8</td><td>-9,845.0</td><td>1.087</td></tr><tr><td>Damped Holt</td><td>1</td><td>22</td><td>500.2</td><td>600.8</td><td>-86.5</td><td>0.055</td></tr><tr><td>Damped Holt</td><td>2</td><td>22</td><td>897.8</td><td>1,108.1</td><td>-203.9</td><td>0.099</td></tr><tr><td>Damped Holt</td><td>3</td><td>22</td><td>1,221.2</td><td>1,445.4</td><td>-353.7</td><td>0.134</td></tr><tr><td>Ridge change • selected</td><td>1</td><td>22</td><td>472.9</td><td>545.9</td><td>+65.9</td><td>0.052</td></tr><tr><td>Ridge change • selected</td><td>2</td><td>22</td><td>772.2</td><td>939.4</td><td>+159.3</td><td>0.085</td></tr><tr><td>Ridge change • selected</td><td>3</td><td>22</td><td>914.7</td><td>1,110.3</td><td>+262.9</td><td>0.100</td></tr></tbody></table></div><p><small>Errors are in published recipients. Bias = prediction minus observation. MASE uses each training window's lag-12 scale. Zero scale gives null in the JSON report.</small></p></article><article><h2>Observed interval coverage</h2><p>Calibration uses development residuals only. A small dependent evaluation sample cannot establish future coverage.</p><div class="scroll"><table><thead><tr><th>Horizon</th><th>Nominal</th><th>Covered</th><th>Observed coverage</th><th>Mean width</th></tr></thead><tbody><tr><td>1 month</td><td>80%</td><td>20 / 22</td><td>90.9%</td><td>1,773</td></tr><tr><td>1 month</td><td>95%</td><td>22 / 22</td><td>100.0%</td><td>2,627</td></tr><tr><td>2 month</td><td>80%</td><td>18 / 22</td><td>81.8%</td><td>2,773</td></tr><tr><td>2 month</td><td>95%</td><td>22 / 22</td><td>100.0%</td><td>5,964</td></tr><tr><td>3 month</td><td>80%</td><td>21 / 22</td><td>95.5%</td><td>3,979</td></tr><tr><td>3 month</td><td>95%</td><td>22 / 22</td><td>100.0%</td><td>9,450</td></tr></tbody></table></div></article><article><h2>Interpretation limits</h2><ul><li>Research only: no clinical, individual eligibility, adverse action or automatic allocation use.</li><li>National administrative caseload is not healthcare demand or unmet caring need.</li><li>One revised release; retrospective benchmark, not a historical-vintage or prospective test.</li><li>Privacy-rounded observations are retained; forecast precision does not recover unrounded totals.</li><li>Intervals use overlapping development errors after model selection; nominal coverage is not guaranteed.</li><li>Policy shocks and reporting changes can invalidate extrapolation; no causal interpretation.</li><li>No regional or demographic fairness validation is possible from this national total.</li><li>Horizons start at the last reporting month; publication lag means this is not a live operational forecast.</li></ul><p>Source: Australian Government Department of Social Services, <em>DSS Income Support Recipients – Monthly Time Series</em>, September 2026. CC BY 2.5 Australia. National totals selected and month labels normalised; estimates and analysis are derivatives. No DSS endorsement implied.</p><p><a href="https://creativecommons.org/licenses/by/2.5/au/">Licence</a> · <a href="https://data.gov.au/data/api/3/action/package_show?id=dss-income-support-recipients-monthly-time-series">Source catalogue</a></p></article><details><summary>Source, method and environment</summary><pre>{
+  &quot;source&quot;: {
+    &quot;schema_version&quot;: 1,
+    &quot;source_release&quot;: &quot;DSS September 2026&quot;,
+    &quot;series&quot;: &quot;Carer Payment&quot;,
+    &quot;geography&quot;: &quot;Australia&quot;,
+    &quot;unit&quot;: &quot;published rounded recipient count&quot;,
+    &quot;time_basis&quot;: &quot;last Friday of month; workbook dates label reporting month&quot;,
+    &quot;rounding&quot;: &quot;nearest 5; source maps values 1..7 to 5; zero is actual zero&quot;,
+    &quot;population&quot;: &quot;current including zero-rate, or suspended, on Centrelink system&quot;,
+    &quot;raw_sha256&quot;: &quot;af25df58fec196687935f950c1802640394dbe381ecada03fc387edb70b60d52&quot;,
+    &quot;projection_sha256&quot;: &quot;6a72d3c5d9f5dac939c7173d5fc883cff4a28f5732e203e71954beb0c58b6c2c&quot;,
+    &quot;attribution&quot;: {
+      &quot;publisher&quot;: &quot;Australian Government Department of Social Services&quot;,
+      &quot;title&quot;: &quot;DSS Income Support Recipients \u2013 Monthly Time Series&quot;,
+      &quot;release&quot;: &quot;September 2026&quot;,
+      &quot;source_url&quot;: &quot;https://data.gov.au/data/dataset/6ed2d8c0-0162-46da-bbfe-d493f6190af8/resource/d0472de2-0c75-45be-9093-7698a30f0e57/download/september-2026-dss-income-support-recipient-monthly-time-series.xlsx&quot;,
+      &quot;catalog_url&quot;: &quot;https://data.gov.au/data/api/3/action/package_show?id=dss-income-support-recipients-monthly-time-series&quot;,
+      &quot;license&quot;: &quot;CC BY 2.5 Australia&quot;,
+      &quot;license_url&quot;: &quot;https://creativecommons.org/licenses/by/2.5/au/&quot;,
+      &quot;changes&quot;: &quot;Selected national Carer Payment All recipients; renamed fields and normalised monthly labels; published totals unchanged.&quot;,
+      &quot;endorsement&quot;: &quot;No DSS endorsement implied.&quot;
+    },
+    &quot;acquired_at&quot;: &quot;2026-10-30T07:12:30.819182+00:00&quot;,
+    &quot;evidence&quot;: {
+      &quot;commit&quot;: &quot;0af56c514d2bda4178ccfc4c4a487a8b408c56a4&quot;,
+      &quot;run_url&quot;: &quot;https://github.com/sajan69/aus-health-forecast-lab/actions/runs/41018651202&quot;
+    },
+    &quot;input_sha256&quot;: &quot;d430e7601e2a635f3485ed270e248f0ca9b9e451840d10892b260ce6769dc313&quot;
+  },
+  &quot;protocol&quot;: {
+    &quot;id&quot;: &quot;carer-national-v1&quot;,
+    &quot;development_end&quot;: &quot;2024-09&quot;,
+    &quot;holdout_window&quot;: [
+      &quot;2024-10&quot;,
+      &quot;2026-09&quot;
+    ],
+    &quot;minimum_training_months&quot;: 60,
+    &quot;horizons&quot;: [
+      1,
+      2,
+      3
+    ],
+    &quot;models_in_tie_order&quot;: [
+      &quot;last_value&quot;,
+      &quot;seasonal_naive&quot;,
+      &quot;damped_holt&quot;,
+      &quot;ridge_change&quot;
+    ],
+    &quot;selection&quot;: &quot;lowest pooled development MAE; tie order fixed&quot;,
+    &quot;development_origins&quot;: 91,
+    &quot;holdout_origins&quot;: 22,
+    &quot;holdout_policy&quot;: &quot;selection and interval widths frozen; refit on observations strictly before each origin&quot;,
+    &quot;intervals&quot;: &quot;symmetric absolute development residual order statistics per horizon at ceil((n+1)*nominal), lower clipped to zero&quot;,
+    &quot;ridge&quot;: &quot;direct changes h=1..3; alpha10; train-only StandardScaler; deterministic cholesky&quot;,
+    &quot;holt&quot;: &quot;additive damped trend, no seasonal component; estimated initialization; train-mean scaling; L-BFGS-B&quot;,
+    &quot;interpretation&quot;: &quot;single revised release retrospective benchmark, not real-time vintage backtest&quot;
+  },
+  &quot;environment&quot;: {
+    &quot;python&quot;: &quot;3.12.14&quot;,
+    &quot;platform&quot;: &quot;Linux-6.18.57-x86_64-with-glibc2.39&quot;,
+    &quot;packages&quot;: {
+      &quot;numpy&quot;: &quot;2.3.5&quot;,
+      &quot;scipy&quot;: &quot;1.17.0&quot;,
+      &quot;pandas&quot;: &quot;2.3.3&quot;,
+      &quot;statsmodels&quot;: &quot;0.15.0&quot;,
+      &quot;scikit-learn&quot;: &quot;1.9.1&quot;,
+      &quot;threadpoolctl&quot;: &quot;3.7.0&quot;
+    },
+    &quot;package_version&quot;: &quot;0.1.0&quot;,
+    &quot;threadpools&quot;: [
+      {
+        &quot;internal_api&quot;: &quot;openblas&quot;,
+        &quot;num_threads&quot;: 1,
+        &quot;version&quot;: &quot;0.3.30&quot;,
+        &quot;architecture&quot;: &quot;SkylakeX&quot;
+      },
+      {
+        &quot;internal_api&quot;: &quot;openblas&quot;,
+        &quot;num_threads&quot;: 1,
+        &quot;version&quot;: &quot;0.3.30&quot;,
+        &quot;architecture&quot;: &quot;SkylakeX&quot;
+      },
+      {
+        &quot;internal_api&quot;: &quot;openmp&quot;,
+        &quot;num_threads&quot;: 1,
+        &quot;version&quot;: null,
+        &quot;architecture&quot;: null
+      }
+    ]
+  }
+}</pre></details></main></body></html>
