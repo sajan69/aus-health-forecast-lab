@@ -2,7 +2,9 @@ import io
 import unittest
 import warnings
 import zipfile
-from scripts.audit_source import AuditError, MAX_EXPANDED, workbook_inventory, xml, PublicLinks
+from pathlib import Path
+import tempfile
+from scripts.audit_source import AuditError, MAX_EXPANDED, workbook_inventory, xml, PublicLinks, summarize, acquire
 
 
 def workbook():
@@ -53,6 +55,25 @@ class SourceAuditTests(unittest.TestCase):
         p = PublicLinks()
         p.feed('<a href="/getmedia/example.xlsx">data</a><a href="javascript:download()">bad</a>')
         self.assertEqual(p.links, {'https://www.aihw.gov.au/getmedia/example.xlsx'})
+
+    def test_csv_inventory_preserves_quarter_label_without_exposing_metrics(self):
+        body = b'Facility/HHS Code,Last Month in QTR,Triage_Category,Number of Attendances\r\nX,Sep-25,All,123\r\n'
+        result = summarize('example.csv', body)
+        self.assertEqual(result['periods'], ['Sep-25'])
+        self.assertEqual(result['rows'], 1)
+        self.assertNotIn('123', str(result))
+        with self.assertRaises(AuditError):
+            summarize('example.csv', b'a,a\n1,2\n')
+        with self.assertRaises(AuditError):
+            summarize('example.csv', b'a,b\n1\n')
+
+    def test_existing_directory_refused_before_any_network(self):
+        with tempfile.TemporaryDirectory() as d:
+            sentinel = Path(d) / 'keep'
+            sentinel.write_text('unchanged')
+            with self.assertRaises(FileExistsError):
+                acquire(Path(d), catalog_only=True)
+            self.assertEqual(sentinel.read_text(), 'unchanged')
 
 
 if __name__ == '__main__':

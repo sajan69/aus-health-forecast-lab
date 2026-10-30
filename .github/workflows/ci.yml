@@ -30,6 +30,10 @@ jobs:
         run: |
           set -euo pipefail
           python scripts/audit_source.py --catalog-only --out artifacts | tee source-inventory.log
+      - name: Inspect published Queensland quarterly alternative
+        run: |
+          set -euo pipefail
+          python scripts/audit_source.py --qld-only --out qld-artifacts | tee qld-source-inventory.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -37,4 +41,6 @@ jobs:
           path: |
             artifacts/
             source-inventory.log
+            qld-artifacts/
+            qld-source-inventory.log
           retention-days: 7

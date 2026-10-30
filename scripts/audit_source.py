@@ -5,6 +5,7 @@ This reads document structure; it neither trains a model nor infers suppressed c
 from __future__ import annotations
 
 import argparse
+import csv
 from datetime import datetime, timezone
 import hashlib
 from html.parser import HTMLParser
@@ -29,6 +30,10 @@ SOURCES = {
     "simple-codes.json": API + "/api/v1/simple-downloads/download-codes",
     "ed-datasets.json": API + "/api/v1/datasets?measure_code=MYH0035",
     "emergency-2024-25.xlsx": AIHW + "/getmedia/9cd61a84-27f4-48aa-aa52-8bccd82e4851/Emergency-department-care-2024-25.xlsx",
+}
+QLD_SOURCES = {
+    "qld-catalog.json": "https://www.data.qld.gov.au/api/3/action/package_show?id=emergency-departments-quarterly-data",
+    "qld-sep25.csv": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/a9634f60-dd88-4d40-8e80-efaf9b6135c5/download/ed_hosp_sep25.csv",
 }
 MAX_DOWNLOAD = 8 * 1024 * 1024
 MAX_EXPANDED = 40 * 1024 * 1024
@@ -133,8 +138,24 @@ def summarize(name: str, body: bytes) -> dict:
         parser = PublicLinks()
         parser.feed(body.decode("utf-8"))
         return {"public_links": sorted(parser.links)[:60]}
+    if name.endswith('.csv'):
+        reader = csv.DictReader(io.StringIO(body.decode('utf-8-sig'), newline=''))
+        if not reader.fieldnames or len(set(reader.fieldnames)) != len(reader.fieldnames):
+            raise AuditError('invalid_csv_header')
+        rows = list(reader)
+        if len(rows) > 20000 or any(None in row or None in row.values() for row in rows):
+            raise AuditError('invalid_csv_shape')
+        return {'columns': reader.fieldnames, 'rows': len(rows),
+                'periods': sorted({row.get('Last Month in QTR', '') for row in rows}),
+                'triage_categories': sorted({row.get('Triage_Category', '') for row in rows}),
+                'facilities_or_hhs': len({row.get('Facility/HHS Code', '') for row in rows})}
     data = json.loads(body)
     result = data.get("result", data)
+    if name == 'qld-catalog.json':
+        return {'title': result.get('title'), 'license_id': result.get('license_id'),
+                'license_title': result.get('license_title'), 'notes': result.get('notes'),
+                'resources': [{'id': r.get('id'), 'name': r.get('name'), 'url': r.get('url')}
+                              for r in result.get('resources', [])][:100]}
     if name == "measures.json":
         return {"version_information": data.get("version_information"),
                 "ed_measures": [x for x in result if "emergency department" in x.get("measure_name", "").lower()]}
@@ -144,12 +165,12 @@ def summarize(name: str, body: bytes) -> dict:
     return {"version_information": data.get("version_information"), "catalog": result}
 
 
-def acquire(out: Path, *, catalog_only: bool = False) -> dict:
+def acquire(out: Path, *, catalog_only: bool = False, qld_only: bool = False) -> dict:
     # Fixed URLs only; no credentials, URL arguments, redirects, cookies or retries.
     out.mkdir(mode=0o700, parents=False, exist_ok=False)
     opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), NoRedirect())
     records = []
-    for name, url in SOURCES.items():
+    for name, url in (QLD_SOURCES if qld_only else SOURCES).items():
         if catalog_only and not name.endswith('.json'):
             continue
         record = {"name": name, "url": url, "requested_at": datetime.now(timezone.utc).isoformat()}
@@ -173,11 +194,11 @@ def acquire(out: Path, *, catalog_only: bool = False) -> dict:
             record["status"] = "inventoried"
         except urllib.error.HTTPError as exc:
             record.update(status="http_error", http_status=exc.code)
-        except (OSError, ValueError, KeyError, IndexError, zipfile.BadZipFile, ET.ParseError) as exc:
+        except (OSError, ValueError, KeyError, IndexError, csv.Error, zipfile.BadZipFile, ET.ParseError) as exc:
             record.update(status="failed", error_type=type(exc).__name__)
         records.append(record)
     report = {"schema_version": 1, "purpose": "public_source_inventory_not_forecast",
-              "mode": "catalog_only" if catalog_only else "documents_and_catalog",
+              "mode": "qld_quarterly" if qld_only else "catalog_only" if catalog_only else "documents_and_catalog",
               "completed_at": datetime.now(timezone.utc).isoformat(), "sources": records}
     payload = json.dumps(report, ensure_ascii=True, allow_nan=False)
     fd = os.open(out / "inventory.json", os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
@@ -189,11 +210,13 @@ def acquire(out: Path, *, catalog_only: bool = False) -> dict:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, required=True, help="new directory under a trusted parent")
-    parser.add_argument("--catalog-only", action="store_true", help="inspect API metadata only; does not obtain forecasting data")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--catalog-only", action="store_true", help="inspect API metadata only; does not obtain forecasting data")
+    mode.add_argument("--qld-only", action="store_true", help="inspect one published Queensland quarterly CSV and catalogue")
     args = parser.parse_args()
-    report = acquire(args.out, catalog_only=args.catalog_only)
+    report = acquire(args.out, catalog_only=args.catalog_only, qld_only=args.qld_only)
     print("SOURCE_INVENTORY=" + json.dumps(report, ensure_ascii=True, allow_nan=False))
-    if args.catalog_only:
+    if args.catalog_only or args.qld_only:
         if any(r["status"] != "inventoried" for r in report["sources"]):
             raise SystemExit(2)
     elif not any(r["status"] == "inventoried" and r["name"].endswith(".xlsx") for r in report["sources"]):
