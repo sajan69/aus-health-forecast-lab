@@ -42,6 +42,12 @@ def strict_json(body):
                       parse_constant=invalid, parse_float=finite)
 
 
+class SchemaError(AuditError):
+    def __init__(self, fields):
+        super().__init__('unreviewed_table_schema')
+        self.fields = [str(f.get('id', ''))[:200] for f in fields[:40]]
+
+
 def resource_summary(data):
     if data.get('success') is not True or not isinstance(data.get('result'), dict):
         raise AuditError('catalog_failed')
@@ -97,7 +103,7 @@ def inspect_table(data, expected_quarter):
     result = data['result']
     fields = result['fields']
     if len(fields) != len(QLD_FIELDS) or {f['id'] for f in fields} != QLD_FIELDS:
-        raise AuditError('unreviewed_table_schema')
+        raise SchemaError(fields)
     records = result['records']
     if not isinstance(records, list) or len(records) > 1000 or type(result.get('total')) is not int:
         raise AuditError('table_limit')
@@ -145,7 +151,7 @@ class Reader:
     def read(self, url, name, parser):
         # Callers use only the fixed catalogues, fixed description and UUID-only
         # DataStore URLs. Catalogue URL fields are never followed.
-        if len(self.requests) >= 25:
+        if len(self.requests) >= 28:
             raise AuditError('request_budget')
         remaining = 24 * 1024 * 1024 - self.bytes
         if remaining <= 0:
@@ -173,6 +179,8 @@ class Reader:
             record.update(status='unavailable', http_status=e.code)
         except (OSError, ValueError, KeyError, TypeError) as e:
             record.update(status='refused', reason=str(e) if isinstance(e, AuditError) else type(e).__name__)
+            if isinstance(e, SchemaError):
+                record['observed_field_names'] = e.fields
         return None
 
 
@@ -187,6 +195,17 @@ def acquire(out):
     # Legacy definitions are available through their expressly published API.
     legacy_definition = reader.read(ROOT + '/api/3/action/datastore_search?resource_id=0b85e426-a80c-4397-89a9-e8040cee48e5&limit=100',
                                     'legacy-definition.json', strict_json)
+    # A separately published, longer welfare series is inspected as a source
+    # candidate only. This does not join it to ED data or infer health needs.
+    dss_catalog = reader.read('https://data.gov.au/data/api/3/action/package_show?id=dss-income-support-recipients-monthly-time-series',
+                              'dss-catalog.json', strict_json)
+    dss_inventory = None
+    if dss_catalog and dss_catalog.get('success') is True:
+        dc = dss_catalog['result']
+        dss_inventory = {'title': dc.get('title'), 'license_id': dc.get('license_id'),
+                         'license_title': dc.get('license_title'), 'notes': dc.get('notes'),
+                         'resources': [{k: r.get(k) for k in ('id', 'name', 'url', 'format', 'last_modified')}
+                                       for r in dc.get('resources', [])[:10]]}
     summaries, projected, unavailable = [], [], []
     if catalogs[0]:
         dated = [(quarter_resource(r), r) for r in catalogs[0]['resources']]
@@ -209,6 +228,7 @@ def acquire(out):
     report = {'schema_version': 1, 'purpose': 'history_feasibility_not_forecast',
               'completed_at': datetime.now(timezone.utc).isoformat(), 'catalogs': catalogs,
               'quarterly_description': description, 'legacy_definition': legacy_definition,
+              'dss_candidate_catalog': dss_inventory,
               'quarter_tables': summaries, 'unavailable_quarters': unavailable,
               'common_entity_codes': common, 'requests': reader.requests,
               'model_ready': False, 'limitation': 'Lexical values and coverage inventory do not establish compatible measure definitions or a valid forecasting target.'}
