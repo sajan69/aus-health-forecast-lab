@@ -33,7 +33,7 @@ SOURCES = {
 }
 QLD_SOURCES = {
     "qld-catalog.json": "https://www.data.qld.gov.au/api/3/action/package_show?id=emergency-departments-quarterly-data",
-    "qld-sep25.csv": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/a9634f60-dd88-4d40-8e80-efaf9b6135c5/download/ed_hosp_sep25.csv",
+    "qld-data.json": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=a9634f60-dd88-4d40-8e80-efaf9b6135c5&limit=1000",
 }
 MAX_DOWNLOAD = 8 * 1024 * 1024
 MAX_EXPANDED = 40 * 1024 * 1024
@@ -156,6 +156,14 @@ def summarize(name: str, body: bytes) -> dict:
                 'license_title': result.get('license_title'), 'notes': result.get('notes'),
                 'resources': [{'id': r.get('id'), 'name': r.get('name'), 'url': r.get('url')}
                               for r in result.get('resources', [])][:100]}
+    if name == 'qld-data.json':
+        records = result['records']
+        return {'fields': result['fields'], 'rows_returned': len(records),
+                'total_rows': result.get('total'), 'limit': result.get('limit'),
+                'periods': sorted({str(r.get('Last Month in QTR', '')) for r in records}),
+                'triage_categories': sorted({str(r.get('Triage_Category', '')) for r in records}),
+                'facilities_or_hhs': len({str(r.get('Facility/HHS Code', '')) for r in records}),
+                'sample_field_names': list(records[0]) if records else []}
     if name == "measures.json":
         return {"version_information": data.get("version_information"),
                 "ed_measures": [x for x in result if "emergency department" in x.get("measure_name", "").lower()]}
@@ -194,6 +202,8 @@ def acquire(out: Path, *, catalog_only: bool = False, qld_only: bool = False) ->
             record["status"] = "inventoried"
         except urllib.error.HTTPError as exc:
             record.update(status="http_error", http_status=exc.code)
+        except AuditError as exc:
+            record.update(status='refused', reason=str(exc))
         except (OSError, ValueError, KeyError, IndexError, csv.Error, zipfile.BadZipFile, ET.ParseError) as exc:
             record.update(status="failed", error_type=type(exc).__name__)
         records.append(record)
@@ -212,7 +222,7 @@ def main():
     parser.add_argument("--out", type=Path, required=True, help="new directory under a trusted parent")
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--catalog-only", action="store_true", help="inspect API metadata only; does not obtain forecasting data")
-    mode.add_argument("--qld-only", action="store_true", help="inspect one published Queensland quarterly CSV and catalogue")
+    mode.add_argument("--qld-only", action="store_true", help="inspect one published Queensland quarterly DataStore table and catalogue")
     args = parser.parse_args()
     report = acquire(args.out, catalog_only=args.catalog_only, qld_only=args.qld_only)
     print("SOURCE_INVENTORY=" + json.dumps(report, ensure_ascii=True, allow_nan=False))

@@ -30,7 +30,7 @@ jobs:
         run: |
           set -euo pipefail
           python scripts/audit_source.py --catalog-only --out artifacts | tee source-inventory.log
-      - name: Inspect published Queensland quarterly alternative
+      - name: Inspect published Queensland quarterly DataStore alternative
         run: |
           set -euo pipefail
           python scripts/audit_source.py --qld-only --out qld-artifacts | tee qld-source-inventory.log
