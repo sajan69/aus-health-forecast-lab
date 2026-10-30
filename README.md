@@ -25,9 +25,9 @@ Python 3.11 or later is required; the source inventory uses only the standard li
 
 ```sh
 python -m unittest discover -s tests -v
-python scripts/audit_source.py --out data-audit
+python scripts/audit_source.py --catalog-only --out data-audit
 ```
 
-Use a new output directory under a trusted parent. The command inventories fixed public AIHW document/API URLs, records acquisition times and SHA-256 hashes, and reads workbook structure without evaluating formulas. It refuses redirects and limits each download to 8 MiB and expanded workbook content to 40 MiB. Network failures are recorded; a missing usable workbook exits with code 2. Availability is not guaranteed. This is a document inventory, not validation that a particular table is suitable for forecasting. Source bodies should remain local; `data/` and `artifacts/` are ignored.
+Use a new output directory under a trusted parent. Catalogue mode inventories fixed public AIHW API metadata URLs and records acquisition times and SHA-256 hashes; it does not download forecasting observations. Any catalogue acquisition failure exits with code 2. The optional document mode (omit `--catalog-only`) also inspects workbook structure without evaluating formulas and exits with code 2 if no workbook is inventoried. It refuses redirects and limits each download to 8 MiB and expanded workbook content to 40 MiB. The website/workbook URLs have returned HTTP 403; no access-control bypass is attempted. Availability is not guaranteed. A catalogue inventory is not validation that a particular table is suitable for forecasting. Source bodies should remain local; `data/` and `artifacts/` are ignored.
 
 The [research-scope assessment](docs/RESEARCH_SCOPE.md) distinguishes privacy law, agency policy, voluntary guidance and research/regulatory boundaries. No forecasting implementation or model results are included yet.

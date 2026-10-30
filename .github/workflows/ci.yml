@@ -26,10 +26,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Inventory public source without training
+      - name: Inventory API catalogue only (not forecasting data)
         run: |
           set -euo pipefail
-          python scripts/audit_source.py --out artifacts | tee source-inventory.log
+          python scripts/audit_source.py --catalog-only --out artifacts | tee source-inventory.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:

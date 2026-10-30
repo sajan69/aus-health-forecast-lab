@@ -26,6 +26,8 @@ SOURCES = {
     "downloads.html": AIHW + "/hospitals/latest-updates-and-downloads/data",
     "measures.json": API + "/api/v1/measures",
     "download-codes.json": API + "/api/v1/measure-downloads/measure-download-codes",
+    "simple-codes.json": API + "/api/v1/simple-downloads/download-codes",
+    "ed-datasets.json": API + "/api/v1/datasets?measure_code=MYH0035",
     "emergency-2024-25.xlsx": AIHW + "/getmedia/9cd61a84-27f4-48aa-aa52-8bccd82e4851/Emergency-department-care-2024-25.xlsx",
 }
 MAX_DOWNLOAD = 8 * 1024 * 1024
@@ -136,15 +138,20 @@ def summarize(name: str, body: bytes) -> dict:
     if name == "measures.json":
         return {"version_information": data.get("version_information"),
                 "ed_measures": [x for x in result if "emergency department" in x.get("measure_name", "").lower()]}
+    if name == "ed-datasets.json":
+        return {"version_information": data.get("version_information"),
+                "dataset_count": len(result), "datasets": result[:100]}
     return {"version_information": data.get("version_information"), "catalog": result}
 
 
-def acquire(out: Path) -> dict:
+def acquire(out: Path, *, catalog_only: bool = False) -> dict:
     # Fixed URLs only; no credentials, URL arguments, redirects, cookies or retries.
     out.mkdir(mode=0o700, parents=False, exist_ok=False)
     opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), NoRedirect())
     records = []
     for name, url in SOURCES.items():
+        if catalog_only and not name.endswith('.json'):
+            continue
         record = {"name": name, "url": url, "requested_at": datetime.now(timezone.utc).isoformat()}
         try:
             request = urllib.request.Request(url, headers={"Accept": "*/*", "User-Agent": "aus-health-forecast-lab-source-audit/0.1"})
@@ -170,6 +177,7 @@ def acquire(out: Path) -> dict:
             record.update(status="failed", error_type=type(exc).__name__)
         records.append(record)
     report = {"schema_version": 1, "purpose": "public_source_inventory_not_forecast",
+              "mode": "catalog_only" if catalog_only else "documents_and_catalog",
               "completed_at": datetime.now(timezone.utc).isoformat(), "sources": records}
     payload = json.dumps(report, ensure_ascii=True, allow_nan=False)
     fd = os.open(out / "inventory.json", os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
@@ -181,10 +189,14 @@ def acquire(out: Path) -> dict:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, required=True, help="new directory under a trusted parent")
+    parser.add_argument("--catalog-only", action="store_true", help="inspect API metadata only; does not obtain forecasting data")
     args = parser.parse_args()
-    report = acquire(args.out)
+    report = acquire(args.out, catalog_only=args.catalog_only)
     print("SOURCE_INVENTORY=" + json.dumps(report, ensure_ascii=True, allow_nan=False))
-    if not any(r["status"] == "inventoried" and r["name"].endswith(".xlsx") for r in report["sources"]):
+    if args.catalog_only:
+        if any(r["status"] != "inventoried" for r in report["sources"]):
+            raise SystemExit(2)
+    elif not any(r["status"] == "inventoried" and r["name"].endswith(".xlsx") for r in report["sources"]):
         raise SystemExit(2)
 
 
