@@ -207,7 +207,7 @@ def acquire(out):
     # candidate only. This does not join it to ED data or infer health needs.
     dss_catalog = reader.read('https://data.gov.au/data/api/3/action/package_show?id=dss-income-support-recipients-monthly-time-series',
                               'dss-catalog.json', strict_json)
-    dss_inventory, dss_workbook = None, None
+    dss_inventory, dss_workbook, carer_projection = None, None, None
     if dss_catalog and dss_catalog.get('success') is True:
         dc = dss_catalog['result']
         dss_inventory = {'title': dc.get('title'), 'license_id': dc.get('license_id'),
@@ -216,7 +216,17 @@ def acquire(out):
                                        for r in dc.get('resources', [])[:10]]}
         expected_url = 'https://data.gov.au/data/dataset/6ed2d8c0-0162-46da-bbfe-d493f6190af8/resource/d0472de2-0c75-45be-9093-7698a30f0e57/download/september-2026-dss-income-support-recipient-monthly-time-series.xlsx'
         if dc.get('license_id') == 'cc-by-2.5' and any(r.get('url') == expected_url for r in dc.get('resources', [])):
-            dss_workbook = reader.read(expected_url, 'dss-sep26.xlsx', lambda b: workbook_inventory(b, preview_rows=30))
+            from .project_carer import project
+            def inspect_dss(body):
+                return workbook_inventory(body, preview_rows=30), project(body)
+            inspected = reader.read(expected_url, 'dss-sep26.xlsx', inspect_dss)
+            if inspected:
+                dss_workbook, carer_projection = inspected
+                with os.fdopen(os.open(out / 'carer-national.json', os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), 'w') as f:
+                    json.dump(carer_projection, f, allow_nan=False)
+                carer_projection = {**{k: v for k, v in carer_projection.items() if k != 'rows'},
+                                    'row_count': len(carer_projection['rows']),
+                                    'first': carer_projection['rows'][0], 'last': carer_projection['rows'][-1]}
     summaries, projected, unavailable = [], [], []
     if catalogs[0]:
         dated = [(quarter_resource(r), r) for r in catalogs[0]['resources']]
@@ -240,7 +250,7 @@ def acquire(out):
               'completed_at': datetime.now(timezone.utc).isoformat(), 'catalogs': catalogs,
               'quarterly_description': description, 'legacy_definition': legacy_definition,
               'dss_candidate_catalog': dss_inventory,
-              'dss_candidate_workbook': dss_workbook,
+              'dss_candidate_workbook': dss_workbook, 'carer_projection': carer_projection,
               'quarter_tables': summaries, 'unavailable_quarters': unavailable,
               'common_entity_codes': common, 'requests': reader.requests,
               'model_ready': False, 'limitation': 'Lexical values and coverage inventory do not establish compatible measure definitions or a valid forecasting target.'}
