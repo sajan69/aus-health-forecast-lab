@@ -1,8 +1,8 @@
 # Australian Health Forecast Lab
 
-Research prototype for forecasting recorded Australian health-service activity from published aggregate statistics. The focus is retrospective evaluation of emergency-department activity for planning research, with seasonal baselines, time-based validation and explicit uncertainty.
+Research prototype for forecasting published aggregate Australian welfare caseload. The selected series is the national Carer Payment recipient total from the DSS monthly time series. It supports methods research using chronological evaluation and explicit uncertainty. It does not measure clinical demand or unmet caring need.
 
-Recorded activity is not a measure of unmet need. Historical releases cannot establish a current operational forecast, and revised data cannot establish what was knowable at an earlier date.
+Recipient totals reflect program rules and recorded administrative status, including suspended and zero-rate recipients. Historical releases cannot establish a current operational forecast, and revised data cannot establish what was knowable at an earlier date.
 
 ## Intended use and limits
 
@@ -32,4 +32,10 @@ Use a new output directory under a trusted parent. Catalogue mode inventories fi
 
 The [research-scope assessment](docs/RESEARCH_SCOPE.md) distinguishes privacy law, agency policy, voluntary guidance and research/regulatory boundaries. No forecasting implementation or model results are included yet.
 
-[Source semantics and reproduction](docs/DATA.md) describe the inspected Queensland quarterly table and the different AIHW reporting grains. The recorded inventory covers one Queensland quarter; it does not establish a continuous forecasting time series.
+[Source semantics and reproduction](docs/DATA.md) describe the DSS target, rounding, coverage and provenance, plus the reasons the inspected emergency-department sources were not selected. A strict projection validates the 177 reporting months from January 2012 to September 2026; no models have been fitted.
+
+```sh
+python -m scripts.audit_history --out history-artifacts
+```
+
+This fixed-source audit produces `carer-national.json` containing only national totals and provenance. It also inventories historical Queensland sources without joining incompatible reporting regimes. It requires a new trusted output directory and refuses unreviewed schemas, licences or missing monthly totals. The live command needs network access; tests run offline.

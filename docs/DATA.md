@@ -35,3 +35,23 @@ The [2024–25 technical appendix](https://www.aihw.gov.au/getmedia/159d833f-6f0
 ## Research boundary
 
 Only published aggregate data is within scope. No suppression reconstruction, patient linkage, private health data or individual predictions are permitted. The [research-scope assessment](RESEARCH_SCOPE.md) records the applicable legal/policy distinctions and remaining deployment boundaries. An inventory of data access and structure is not ethics approval, clinical validation, an operational forecast or a compliance certificate.
+
+## Selected monthly target: national Carer Payment recipients
+
+Source: Australian Government Department of Social Services, *DSS Income Support Recipients – Monthly Time Series*, September 2026 release. [Official catalogue](https://data.gov.au/data/api/3/action/package_show?id=dss-income-support-recipients-monthly-time-series). Accessed 30 October 2026. The catalogue declares [CC BY 2.5 Australia](https://creativecommons.org/licenses/by/2.5/au/). This derived projection selects and renames two columns and normalises month labels; it does not imply DSS endorsement. The separate DSS website's general licence is not substituted for the dataset licence.
+
+The workbook's `Carer Payment` sheet contains 177 consecutive reporting months, January 2012–September 2026. Only `Date` and `All recipients` are selected. Dates encoded as the first day of a month label the month: workbook caveats define the statistical reference date as the **last Friday of the reported month**. They are not monthly flows or sums of daily recipients.
+
+The source includes recipients current on the Centrelink system, including zero-rate, or suspended. It defines Carer Payment as income support for people whose caring role limits substantial paid employment; this is not Carer Allowance, care hours or all people providing unpaid care. The workbook notes a March 2020 transfer of some Wife Pension recipients to Carer Payment. Program changes and administrative revisions may change caseload independently of health needs.
+
+All cells, totals and subtotals are privacy-rounded to the nearest five; source values 1–7 map to five, and zero is an actual zero. The projection preserves published totals without de-rounding, combining demographic categories or attempting to recover small cells. Missing, suppressed, non-numeric or non-multiple-of-five target totals cause refusal, not zero filling. Demographic cells remain outside the forecasting projection.
+
+The strict release-specific adapter requires the reviewed headers, 1900 workbook date system and exact ordered monthly range. Formula targets, duplicated cells, gaps, changed dates and extra target rows are refused. It validates archive budgets first and never evaluates formulas or follows workbook external links. The fixed September 2026 release path is verified against its catalogue before acquisition. A later release requires deliberate contract review, rather than being silently substituted.
+
+This is one acquired revised-history release, not historical release vintages. A chronological backtest on these values would be a **retrospective benchmark**, not proof of what was knowable at each historical origin. AIHW also documents that DSS's broadened recipient population was backcast in revised time series; do not splice older definitions or interpret a release-policy date as an observed causal jump. [AIHW income-support context](https://www.aihw.gov.au/reports/australias-welfare/income-support-payments-for-the-working-age-popula).
+
+### Historical emergency-department feasibility
+
+The broader audit reads only published public catalogue and DataStore interfaces, with 28 requests, 8 MiB per response and a 24 MiB total read budget. It does not follow arbitrary resource URLs. The Queensland current catalogue has 20 quarterly resources, of which 11 expose DataStore. Three reviewed field schemas account for differences in triage spelling and a traffic-light field. Eight tables were accepted; three failed entity-code validation. These refusals are not evidence of publisher errors. Nine older quarterly resources have no published DataStore in this catalogue.
+
+The pre-October 2020 catalogue describes monthly reporting, a March–September 2020 reporting gap, and facility-scope changes in 2018. The current description workbook returned HTTP 202 and was refused. Legacy definitions are not assumed to establish current quarterly semantics. The accessed data therefore do not establish a compatible continuous monthly ED target, and quarterly values are not interpolated into monthly observations.

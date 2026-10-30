@@ -224,6 +224,7 @@ def acquire(out):
                 dss_workbook, carer_projection = inspected
                 with os.fdopen(os.open(out / 'carer-national.json', os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), 'w') as f:
                     json.dump(carer_projection, f, allow_nan=False)
+                print('CARER_PROJECTION=' + json.dumps(carer_projection, allow_nan=False))
                 carer_projection = {**{k: v for k, v in carer_projection.items() if k != 'rows'},
                                     'row_count': len(carer_projection['rows']),
                                     'first': carer_projection['rows'][0], 'last': carer_projection['rows'][-1]}
@@ -266,7 +267,7 @@ def main():
     args = p.parse_args()
     report = acquire(args.out)
     print('HISTORY_INVENTORY=' + json.dumps(report, ensure_ascii=True, allow_nan=False))
-    if any(c is None for c in report['catalogs']):
+    if any(c is None for c in report['catalogs']) or report['carer_projection'] is None:
         raise SystemExit(2)
 
 
