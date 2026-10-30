@@ -38,6 +38,17 @@ QLD_SOURCES = {
 MAX_DOWNLOAD = 8 * 1024 * 1024
 MAX_EXPANDED = 40 * 1024 * 1024
 NS = {"s": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
+QLD_FIELDS = {
+    '_id', 'Facility/HHS Code', 'Facility/HHS Desc', 'Last Month in QTR',
+    'Triage_Category', 'Number of Attendances', 'Variation in the number of attendances (%)',
+    'Patients Seen within clinically recommended times (%)',
+    'Median Waiting time to treatment (minutes)', 'Patients who did not wait for treatment (%)',
+    'Patients admitted from the Emergency Department (%)', 'Admissions to hospital within 4 hours (%)',
+    'Patients whose ED stay was within 4 hours (%)',
+    'Number of patients who left after treatment commenced',
+    'Percentage of patients who left after treatment commenced (%)',
+    'Number of patients who did not wait for treatment',
+}
 
 
 class AuditError(ValueError):
@@ -151,6 +162,8 @@ def summarize(name: str, body: bytes) -> dict:
                 'facilities_or_hhs': len({row.get('Facility/HHS Code', '') for row in rows})}
     data = json.loads(body)
     result = data.get("result", data)
+    if name.startswith('qld-') and data.get('success') is not True:
+        raise AuditError('api_did_not_succeed')
     if name == 'qld-catalog.json':
         return {'title': result.get('title'), 'license_id': result.get('license_id'),
                 'license_title': result.get('license_title'), 'notes': result.get('notes'),
@@ -158,8 +171,19 @@ def summarize(name: str, body: bytes) -> dict:
                               for r in result.get('resources', [])][:100]}
     if name == 'qld-data.json':
         records = result['records']
+        fields = result['fields']
+        if {x['id'] for x in fields} != QLD_FIELDS or len(fields) != len(QLD_FIELDS):
+            raise AuditError('unexpected_qld_schema')
+        if not isinstance(records, list) or len(records) > 1000:
+            raise AuditError('record_limit')
+        if any(not isinstance(r, dict) or set(r) != QLD_FIELDS for r in records):
+            raise AuditError('unexpected_qld_record_fields')
+        total = result.get('total')
+        if type(total) is not int or total < len(records):
+            raise AuditError('invalid_total')
         return {'fields': result['fields'], 'rows_returned': len(records),
                 'total_rows': result.get('total'), 'limit': result.get('limit'),
+                'complete_page_as_reported': total == len(records),
                 'periods': sorted({str(r.get('Last Month in QTR', '')) for r in records}),
                 'triage_categories': sorted({str(r.get('Triage_Category', '')) for r in records}),
                 'facilities_or_hhs': len({str(r.get('Facility/HHS Code', '')) for r in records}),
@@ -193,12 +217,13 @@ def acquire(out: Path, *, catalog_only: bool = False, qld_only: bool = False) ->
                 record.update(bytes=len(body), sha256=hashlib.sha256(body).hexdigest(),
                               content_type=response.headers.get("Content-Type"),
                               acquired_at=datetime.now(timezone.utc).isoformat())
-            # Only the fixed public source bodies are saved. No network response
-            # is executed; invalid workbooks fail inventory and are not selected.
+            # Validate structure before retaining a source body. No network
+            # response is executed or selected as a forecasting dataset here.
+            inventory = summarize(name, body)
             fd = os.open(out / name, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
             with os.fdopen(fd, "wb") as stream:
                 stream.write(body)
-            record["inventory"] = summarize(name, body)
+            record["inventory"] = inventory
             record["status"] = "inventoried"
         except urllib.error.HTTPError as exc:
             record.update(status="http_error", http_status=exc.code)

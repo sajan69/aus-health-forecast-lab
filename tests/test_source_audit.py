@@ -1,10 +1,11 @@
 import io
+import json
 import unittest
 import warnings
 import zipfile
 from pathlib import Path
 import tempfile
-from scripts.audit_source import AuditError, MAX_EXPANDED, workbook_inventory, xml, PublicLinks, summarize, acquire
+from scripts.audit_source import AuditError, MAX_EXPANDED, QLD_FIELDS, workbook_inventory, xml, PublicLinks, summarize, acquire
 
 
 def workbook():
@@ -74,6 +75,18 @@ class SourceAuditTests(unittest.TestCase):
             with self.assertRaises(FileExistsError):
                 acquire(Path(d), catalog_only=True)
             self.assertEqual(sentinel.read_text(), 'unchanged')
+
+    def test_datastore_refuses_schema_drift_and_reports_incomplete_page(self):
+        data = {'success': True, 'result': {
+            'fields': [{'id': x} for x in sorted(QLD_FIELDS)],
+            'records': [{x: '' for x in QLD_FIELDS}], 'total': 2, 'limit': 1000}}
+        result = summarize('qld-data.json', json.dumps(data).encode())
+        self.assertFalse(result['complete_page_as_reported'])
+        data['result']['fields'].append({'id': 'patient_name'})
+        with self.assertRaisesRegex(AuditError, 'unexpected_qld_schema'):
+            summarize('qld-data.json', json.dumps(data).encode())
+        with self.assertRaisesRegex(AuditError, 'api_did_not_succeed'):
+            summarize('qld-data.json', b'{"success":false,"result":{}}')
 
 
 if __name__ == '__main__':

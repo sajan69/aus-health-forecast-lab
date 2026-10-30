@@ -1,0 +1,335 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-30",
+  "purpose": "source_feasibility_not_forecast",
+  "source_commit": "78a192293184e419eb39f6f0599ed6a91c433599",
+  "source_ci": "https://github.com/sajan69/aus-health-forecast-lab/actions/runs/40983706968",
+  "qld": {
+    "completed_at": "2026-10-30T01:05:29.136491+00:00",
+    "license": "CC-BY-4.0",
+    "attribution": "Source: Queensland Government, Queensland Health. Emergency departments - quarterly data, September 2025. Accessed 30 October 2026. Inventory is a derived summary; no government endorsement.",
+    "sources": [
+      {
+        "name": "qld-catalog.json",
+        "url": "https://www.data.qld.gov.au/api/3/action/package_show?id=emergency-departments-quarterly-data",
+        "requested_at": "2026-10-30T01:05:27.087429+00:00",
+        "bytes": 54697,
+        "sha256": "6b52e30853d04b188fcc068e7e0018da83df00a10d5246e75a181ee9dccd55f2",
+        "content_type": "application/json;charset=utf-8",
+        "acquired_at": "2026-10-30T01:05:27.308976+00:00",
+        "inventory": {
+          "title": "Emergency departments - quarterly data",
+          "license_id": "CC-BY-4.0",
+          "license_title": "Creative Commons Attribution 4.0",
+          "notes": "Summary file of emergency departments with information on activity and performance measures by hospital. Hospital performance and open data are updated quarterly.\r\n\r\nData prior to October 2020 can be found here: https://www.data.qld.gov.au/dataset/emergency-departments-pre-oct-20\r\n",
+          "resources": [
+            {
+              "id": "492bb29f-bc29-4cda-ad2e-a7ea747de079",
+              "name": "Emergency department—summary description",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/492bb29f-bc29-4cda-ad2e-a7ea747de079/download/ed_website_descriptions.xlsx"
+            },
+            {
+              "id": "a9634f60-dd88-4d40-8e80-efaf9b6135c5",
+              "name": "September 2025 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/a9634f60-dd88-4d40-8e80-efaf9b6135c5/download/ed_hosp_sep25.csv"
+            },
+            {
+              "id": "e634fc0f-c77d-45bc-8196-5a983ddcffdd",
+              "name": "June 2025 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/e634fc0f-c77d-45bc-8196-5a983ddcffdd/download/ed_hosp_jun25.csv"
+            },
+            {
+              "id": "5ff94eab-e75d-4166-b80a-98b73262f971",
+              "name": "March 2025 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/5ff94eab-e75d-4166-b80a-98b73262f971/download/ed_hosp_mar25.csv"
+            },
+            {
+              "id": "81455b62-578a-441a-a7dd-830dc2634cba",
+              "name": "December 2024 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/81455b62-578a-441a-a7dd-830dc2634cba/download/ed_hosp_dec24.csv"
+            },
+            {
+              "id": "adfe4a98-a479-4c1e-a34b-1050a6386ff4",
+              "name": "September 2024 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/adfe4a98-a479-4c1e-a34b-1050a6386ff4/download/ed_hosp_sep24.csv"
+            },
+            {
+              "id": "f1229647-ac37-43d5-91ba-092a6f59152c",
+              "name": "June 2024 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/f1229647-ac37-43d5-91ba-092a6f59152c/download/ed_hosp_jun24.csv"
+            },
+            {
+              "id": "ce4b7a8c-11bd-489b-bf55-fc0872dc540f",
+              "name": "March 2024 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/ce4b7a8c-11bd-489b-bf55-fc0872dc540f/download/ed_hosp-mar24.csv"
+            },
+            {
+              "id": "fff38b0c-b6c3-4b73-8c4c-c43dd0d9797d",
+              "name": "December 2023 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/fff38b0c-b6c3-4b73-8c4c-c43dd0d9797d/download/ed_hosp-dec23.csv"
+            },
+            {
+              "id": "400c41fe-9112-4023-aec3-c906393abd14",
+              "name": "September 2023 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/400c41fe-9112-4023-aec3-c906393abd14/download/ed_quarterlysep23.csv"
+            },
+            {
+              "id": "bbdbdee1-5ced-4f91-abec-52c33b8928bb",
+              "name": "June 2023 - Emergency Department Open Data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/bbdbdee1-5ced-4f91-abec-52c33b8928bb/download/open-data-ed_quarterlyjune23.csv"
+            },
+            {
+              "id": "3dbe0fc7-6243-41c5-9fa1-9bbfbac125ef",
+              "name": "March 2023 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/3dbe0fc7-6243-41c5-9fa1-9bbfbac125ef/download/ed_hospmar23.csv"
+            },
+            {
+              "id": "ca781f6d-e7ee-41bc-896a-4bc0009d2efc",
+              "name": "December 2022 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/ca781f6d-e7ee-41bc-896a-4bc0009d2efc/download/dec22.xlsx"
+            },
+            {
+              "id": "d1ccb552-3d18-4581-a2b6-70c6f8c73ada",
+              "name": "September 2022 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/d1ccb552-3d18-4581-a2b6-70c6f8c73ada/download/open-data-ed_quarterly1sep22.csv"
+            },
+            {
+              "id": "660aec6a-c45e-446e-b1ce-698bbbec8a41",
+              "name": "June 2022 - Emergency Department Open Data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/660aec6a-c45e-446e-b1ce-698bbbec8a41/download/edquarterly1jun22.xls"
+            },
+            {
+              "id": "dfa3aa9d-9189-49cc-ab9c-fb8bb93c931b",
+              "name": "March 2022 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/dfa3aa9d-9189-49cc-ab9c-fb8bb93c931b/download/edquarterly1mar22.xls"
+            },
+            {
+              "id": "5c2b0fcf-bfe6-4f10-9f69-09da59c2246c",
+              "name": "December 2021 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/5c2b0fcf-bfe6-4f10-9f69-09da59c2246c/download/dec21.xls"
+            },
+            {
+              "id": "e826ee7d-8253-4aa8-b9de-730925e0bf2a",
+              "name": "September 2021 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/e826ee7d-8253-4aa8-b9de-730925e0bf2a/download/sep21.xls"
+            },
+            {
+              "id": "70c3d72b-9e21-4233-9917-b923808f3ba5",
+              "name": "June 2021 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/70c3d72b-9e21-4233-9917-b923808f3ba5/download/jun21.xls"
+            },
+            {
+              "id": "5c592193-0596-4a36-83e8-28d84236d927",
+              "name": "March 2021 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/5c592193-0596-4a36-83e8-28d84236d927/download/mar21.xls"
+            },
+            {
+              "id": "1748d848-5e47-49af-b41a-5d5134b992b7",
+              "name": "December 2020 - Emergency Department Open data",
+              "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/1748d848-5e47-49af-b41a-5d5134b992b7/download/dec20.xls"
+            }
+          ]
+        },
+        "status": "inventoried"
+      },
+      {
+        "name": "qld-data.json",
+        "url": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=a9634f60-dd88-4d40-8e80-efaf9b6135c5&limit=1000",
+        "requested_at": "2026-10-30T01:05:27.309840+00:00",
+        "bytes": 453679,
+        "sha256": "54fecae1bec4a6aa1c5a8027a8e38dc923f0d494b2fd5f2248f378ded72bc8ec",
+        "content_type": "application/json;charset=utf-8",
+        "acquired_at": "2026-10-30T01:05:29.132766+00:00",
+        "inventory": {
+          "fields": [
+            {
+              "id": "_id",
+              "type": "int"
+            },
+            {
+              "id": "Facility/HHS Code",
+              "type": "text"
+            },
+            {
+              "id": "Facility/HHS Desc",
+              "type": "text"
+            },
+            {
+              "id": "Last Month in QTR",
+              "type": "text"
+            },
+            {
+              "id": "Triage_Category",
+              "type": "text"
+            },
+            {
+              "id": "Number of Attendances",
+              "type": "text"
+            },
+            {
+              "id": "Variation in the number of attendances (%)",
+              "type": "text"
+            },
+            {
+              "id": "Patients Seen within clinically recommended times (%)",
+              "type": "text"
+            },
+            {
+              "id": "Median Waiting time to treatment (minutes)",
+              "type": "text"
+            },
+            {
+              "id": "Patients who did not wait for treatment (%)",
+              "type": "text"
+            },
+            {
+              "id": "Patients admitted from the Emergency Department (%)",
+              "type": "text"
+            },
+            {
+              "id": "Admissions to hospital within 4 hours (%)",
+              "type": "text"
+            },
+            {
+              "id": "Patients whose ED stay was within 4 hours (%)",
+              "type": "text"
+            },
+            {
+              "id": "Number of patients who left after treatment commenced",
+              "type": "text"
+            },
+            {
+              "id": "Percentage of patients who left after treatment commenced (%)",
+              "type": "text"
+            },
+            {
+              "id": "Number of patients who did not wait for treatment",
+              "type": "text"
+            }
+          ],
+          "rows_returned": 630,
+          "total_rows": 630,
+          "limit": 1000,
+          "periods": [
+            "Sep-25"
+          ],
+          "triage_categories": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "ALL"
+          ],
+          "facilities_or_hhs": 105,
+          "sample_field_names": [
+            "_id",
+            "Facility/HHS Code",
+            "Facility/HHS Desc",
+            "Last Month in QTR",
+            "Triage_Category",
+            "Number of Attendances",
+            "Variation in the number of attendances (%)",
+            "Patients Seen within clinically recommended times (%)",
+            "Median Waiting time to treatment (minutes)",
+            "Patients who did not wait for treatment (%)",
+            "Patients admitted from the Emergency Department (%)",
+            "Admissions to hospital within 4 hours (%)",
+            "Patients whose ED stay was within 4 hours (%)",
+            "Number of patients who left after treatment commenced",
+            "Percentage of patients who left after treatment commenced (%)",
+            "Number of patients who did not wait for treatment"
+          ]
+        },
+        "status": "inventoried"
+      }
+    ]
+  },
+  "aihw": {
+    "source_ci": "https://github.com/sajan69/aus-health-forecast-lab/actions/runs/40983210008",
+    "url": "https://myhospitalsapi.aihw.gov.au/api/v1/datasets?measure_code=MYH0035",
+    "acquired_at": "2026-10-30T01:00:35.546050+00:00",
+    "raw_sha256": "20dc497a537ebcc8617e0dc25dbdc98592fde7b155dc0977e66a1c191985aa92",
+    "bytes": 30689,
+    "version_information": {
+      "api_version": "1.6.4.0",
+      "data_version": 2026081901,
+      "date_uploaded": "2026-08-19T00:00:00",
+      "requested_time_stamp": "2026-10-30T12:00:35.3209264+11:00"
+    },
+    "measure_code": "MYH0035",
+    "dataset_count": 70,
+    "reporting_windows": [
+      {
+        "start": "2011-07-01",
+        "end": "2012-06-30"
+      },
+      {
+        "start": "2012-07-01",
+        "end": "2013-06-30"
+      },
+      {
+        "start": "2013-07-01",
+        "end": "2014-06-30"
+      },
+      {
+        "start": "2014-07-01",
+        "end": "2015-06-30"
+      },
+      {
+        "start": "2015-07-01",
+        "end": "2016-06-30"
+      },
+      {
+        "start": "2016-07-01",
+        "end": "2017-06-30"
+      },
+      {
+        "start": "2017-07-01",
+        "end": "2018-06-30"
+      },
+      {
+        "start": "2018-07-01",
+        "end": "2019-06-30"
+      },
+      {
+        "start": "2019-07-01",
+        "end": "2020-06-30"
+      },
+      {
+        "start": "2020-07-01",
+        "end": "2021-06-30"
+      },
+      {
+        "start": "2021-07-01",
+        "end": "2022-06-30"
+      },
+      {
+        "start": "2022-07-01",
+        "end": "2023-06-30"
+      },
+      {
+        "start": "2023-07-01",
+        "end": "2024-06-30"
+      },
+      {
+        "start": "2024-07-01",
+        "end": "2025-06-30"
+      }
+    ],
+    "reported_categories": [
+      "Emergency",
+      "Non-Urgent",
+      "Resuscitation",
+      "Semi-Urgent",
+      "Urgent"
+    ],
+    "limitation": "Catalogue contains annual windows; observations were not downloaded for modelling."
+  },
+  "limitations": [
+    "One Queensland quarter has been inventoried, not a validated forecasting time series.",
+    "Published scope and source definitions remain distinct from unmet need.",
+    "No individual-level data, model fitting, prediction results or government deployment.",
+    "Caller acquisition timestamp and hashes do not establish an immutable provider release or real-time vintage."
+  ]
+}
