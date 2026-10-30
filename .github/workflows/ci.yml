@@ -44,3 +44,23 @@ jobs:
             qld-artifacts/
             qld-source-inventory.log
           retention-days: 7
+  history-source:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          set -euo pipefail
+          python -m scripts.audit_history --out history-artifacts | tee history-inventory.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: qld-history-inventory
+          path: |
+            history-artifacts/
+            history-inventory.log
+          retention-days: 7

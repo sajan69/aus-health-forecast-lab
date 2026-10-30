@@ -8,3 +8,5 @@ source-inventory.log
 qld-artifacts/
 qld-source-inventory.log
 .env
+history-artifacts/
+history-inventory.log
