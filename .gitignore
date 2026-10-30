@@ -10,3 +10,8 @@ qld-source-inventory.log
 .env
 history-artifacts/
 history-inventory.log
+.venv-model/
+build/
+dist/
+*.egg-info/
+forecast-artifacts/

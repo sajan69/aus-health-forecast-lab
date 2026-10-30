@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools==84.1.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aus-health-forecast-lab"
+version = "0.1.0"
+description = "Offline retrospective forecasting of published national Carer Payment totals"
+requires-python = ">=3.12"
+dependencies = ["numpy==2.3.5", "scipy==1.17.0", "pandas==2.3.3", "statsmodels==0.15.0", "scikit-learn==1.9.1"]
+
+[project.scripts]
+aus-health-forecast = "aus_health_forecast.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

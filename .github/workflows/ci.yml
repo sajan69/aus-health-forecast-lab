@@ -64,3 +64,28 @@ jobs:
             history-artifacts/
             history-inventory.log
           retention-days: 7
+
+  forecast:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      matrix:
+        python: ['3.12', '3.13']
+    env:
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '${{ matrix.python }}'
+      - run: |
+          set -euo pipefail
+          python -m pip install -r requirements.txt
+          python -m pip wheel --no-deps . --wheel-dir dist
+          python -m pip install --no-deps dist/*.whl
+          python -m pip check
+          python -m unittest discover -s forecast_tests -v
+          aus-health-forecast --version
+          aus-health-forecast validate examples/carer-national-sep2026.json
