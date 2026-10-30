@@ -1,0 +1,822 @@
+{
+  "schema_version": 1,
+  "source_run": "https://github.com/sajan69/aus-health-forecast-lab/actions/runs/41018651202",
+  "source_commit": "0af56c514d2bda4178ccfc4c4a487a8b408c56a4",
+  "completed_at": "2026-10-30T07:12:32.723488+00:00",
+  "model_ready": false,
+  "meaning": "Source projection verified; no forecasting model fitted or validated.",
+  "dss": {
+    "catalog": {
+      "title": "DSS Income Support Recipients – Monthly Time Series",
+      "license_id": "cc-by-2.5",
+      "license_title": "Creative Commons Attribution 2.5 Australia",
+      "notes": "The “DSS Income Support Recipient – Monthly Time Series” publication is a monthly report, covering the Income Support payments of Age Pension, Disability Support Payment, ABSTUDY (Living Allowance), Austudy, Carer Payment, JobSeeker Payment, Special Benefit, Parenting Payment Partnered, Parenting Payment Single, Youth Allowance Other and Youth Allowance Student and Apprentice.\r\nThe report includes payment recipient numbers by demographics such as age, gender, state, earnings, rate and marital status.",
+      "resources": [
+        {
+          "id": "d0472de2-0c75-45be-9093-7698a30f0e57",
+          "name": "September 2026 DSS Income Support Recipient - Monthly Time-Series",
+          "url": "https://data.gov.au/data/dataset/6ed2d8c0-0162-46da-bbfe-d493f6190af8/resource/d0472de2-0c75-45be-9093-7698a30f0e57/download/september-2026-dss-income-support-recipient-monthly-time-series.xlsx",
+          "format": ".xlsx",
+          "last_modified": "2026-10-22T23:11:33.815377"
+        }
+      ]
+    },
+    "projection": {
+      "schema_version": 1,
+      "source_release": "DSS September 2026",
+      "series": "Carer Payment",
+      "geography": "Australia",
+      "unit": "published rounded recipient count",
+      "time_basis": "last Friday of month; workbook dates label reporting month",
+      "rounding": "nearest 5; source maps values 1..7 to 5; zero is actual zero",
+      "population": "current including zero-rate, or suspended, on Centrelink system",
+      "raw_sha256": "af25df58fec196687935f950c1802640394dbe381ecada03fc387edb70b60d52",
+      "projection_sha256": "6a72d3c5d9f5dac939c7173d5fc883cff4a28f5732e203e71954beb0c58b6c2c",
+      "row_count": 177,
+      "first": {
+        "month": "2012-01",
+        "published_recipients": 197435
+      },
+      "last": {
+        "month": "2026-09",
+        "published_recipients": 333520
+      }
+    }
+  },
+  "queensland": {
+    "catalogs": [
+      {
+        "title": "Emergency departments - quarterly data",
+        "license_id": "CC-BY-4.0",
+        "notes": "Summary file of emergency departments with information on activity and performance measures by hospital. Hospital performance and open data are updated quarterly.\r\n\r\nData prior to October 2020 can be found here: https://www.data.qld.gov.au/dataset/emergency-departments-pre-oct-20\r\n",
+        "resources": [
+          {
+            "id": "492bb29f-bc29-4cda-ad2e-a7ea747de079",
+            "name": "Emergency department—summary description",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "a9634f60-dd88-4d40-8e80-efaf9b6135c5",
+            "name": "September 2025 - Emergency Department Open data",
+            "format": "CSV",
+            "datastore_active": true
+          },
+          {
+            "id": "e634fc0f-c77d-45bc-8196-5a983ddcffdd",
+            "name": "June 2025 - Emergency Department Open data",
+            "format": "CSV",
+            "datastore_active": true
+          },
+          {
+            "id": "5ff94eab-e75d-4166-b80a-98b73262f971",
+            "name": "March 2025 - Emergency Department Open data",
+            "format": "CSV",
+            "datastore_active": true
+          },
+          {
+            "id": "81455b62-578a-441a-a7dd-830dc2634cba",
+            "name": "December 2024 - Emergency Department Open data",
+            "format": "CSV",
+            "datastore_active": true
+          },
+          {
+            "id": "adfe4a98-a479-4c1e-a34b-1050a6386ff4",
+            "name": "September 2024 - Emergency Department Open data",
+            "format": "CSV",
+            "datastore_active": true
+          },
+          {
+            "id": "f1229647-ac37-43d5-91ba-092a6f59152c",
+            "name": "June 2024 - Emergency Department Open data",
+            "format": "CSV",
+            "datastore_active": true
+          },
+          {
+            "id": "ce4b7a8c-11bd-489b-bf55-fc0872dc540f",
+            "name": "March 2024 - Emergency Department Open data",
+            "format": "CSV",
+            "datastore_active": true
+          },
+          {
+            "id": "fff38b0c-b6c3-4b73-8c4c-c43dd0d9797d",
+            "name": "December 2023 - Emergency Department Open data",
+            "format": "CSV",
+            "datastore_active": true
+          },
+          {
+            "id": "400c41fe-9112-4023-aec3-c906393abd14",
+            "name": "September 2023 - Emergency Department Open data",
+            "format": "CSV",
+            "datastore_active": true
+          },
+          {
+            "id": "bbdbdee1-5ced-4f91-abec-52c33b8928bb",
+            "name": "June 2023 - Emergency Department Open Data",
+            "format": "CSV",
+            "datastore_active": true
+          },
+          {
+            "id": "3dbe0fc7-6243-41c5-9fa1-9bbfbac125ef",
+            "name": "March 2023 - Emergency Department Open data",
+            "format": "CSV",
+            "datastore_active": true
+          },
+          {
+            "id": "ca781f6d-e7ee-41bc-896a-4bc0009d2efc",
+            "name": "December 2022 - Emergency Department Open data",
+            "format": "XLSX",
+            "datastore_active": false
+          },
+          {
+            "id": "d1ccb552-3d18-4581-a2b6-70c6f8c73ada",
+            "name": "September 2022 - Emergency Department Open data",
+            "format": "CSV",
+            "datastore_active": false
+          },
+          {
+            "id": "660aec6a-c45e-446e-b1ce-698bbbec8a41",
+            "name": "June 2022 - Emergency Department Open Data",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "dfa3aa9d-9189-49cc-ab9c-fb8bb93c931b",
+            "name": "March 2022 - Emergency Department Open data",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "5c2b0fcf-bfe6-4f10-9f69-09da59c2246c",
+            "name": "December 2021 - Emergency Department Open data",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "e826ee7d-8253-4aa8-b9de-730925e0bf2a",
+            "name": "September 2021 - Emergency Department Open data",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "70c3d72b-9e21-4233-9917-b923808f3ba5",
+            "name": "June 2021 - Emergency Department Open data",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "5c592193-0596-4a36-83e8-28d84236d927",
+            "name": "March 2021 - Emergency Department Open data",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "1748d848-5e47-49af-b41a-5d5134b992b7",
+            "name": "December 2020 - Emergency Department Open data",
+            "format": "XLS",
+            "datastore_active": false
+          }
+        ]
+      },
+      {
+        "title": "Emergency departments - Performance data pre October 2020",
+        "license_id": "CC-BY-4.0",
+        "notes": "Summary file of emergency departments with information on activity and performance measures by hospital to October 2020. \r\n\r\nPLEASE NOTE:\r\n\r\n• This dataset contains published monthly data to October 2020. After this time, Queensland Health moved to a quarterly reporting format for Elective Surgery and Emergency Department performance. This change was to align with the Queensland Health Hospital Performance site which supports greater consistency of other performance related activity across Hospital and Health Services. \r\n\r\n• Quarterly data from October 2020 can be found at https://www.data.qld.gov.au/dataset/emergency-departments-quarterly-data\r\n\r\n• There is a gap in data from March 2020 to September 2020 due to the national agreement to suspend public reporting of hospital performance. \r\n\r\n• As of July 2018 the Emergency Department dataset includes an additional 38 facilities. The 30 rural hospitals on the former Rural Emergency Department dataset have also been added to the Emergency Department dataset and will not be displayed on a separate page any more. As a result, the Emergency Department and Emergency Department Paediatrics datasets now display data for 97 facilities.\r\n\r\n• As of November 2018 the Emergency Department dataset includes Mount Morgan, Blackwater, Moura, Springsure and Woorabinda Hospitals.\r\n",
+        "resources": [
+          {
+            "id": "0b85e426-a80c-4397-89a9-e8040cee48e5",
+            "name": "Emergency department—summary 1 description",
+            "format": "XLS",
+            "datastore_active": true
+          },
+          {
+            "id": "f363e826-db1d-4d35-b451-2116d982e8e9",
+            "name": "February 2020 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "851a97a7-cd09-49e7-aa94-179be9ee0cb5",
+            "name": "Jan 2020 - Emergency Department Open Data ",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "edc1b25b-7f11-4e6f-af35-bc12cb157062",
+            "name": "Dec 2019 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "c20c2a37-d646-4fd8-9219-44cfa3699b54",
+            "name": "Nov 2019 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "afa9aa24-50e7-4f8b-b2a3-814e20e4d7c9",
+            "name": "Oct 2019 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "9dc65440-44e1-472e-9ef8-d97ff3b69bb4",
+            "name": "August 2019 - Emergency department Open Data",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "71a92b96-53bd-4ba9-a117-35c70b193db5",
+            "name": "Sep 2019 - Emergency Department 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "a98e0c2a-f853-4745-b5b6-4eb42b0052f7",
+            "name": "June 2019 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "70d29e56-a7aa-4900-a82b-c66be8a3aafd",
+            "name": "July 2019 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "cf54b5a3-52ff-405a-b25c-f37ec3fc227c",
+            "name": "May 2019 - Emergency Department - Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "60110276-e265-4fd2-ae4d-5b8287254714",
+            "name": "April 2019 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "ee9bdf17-034d-4104-94e1-c1a494777786",
+            "name": "Mar 2019 - Emergency Department",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "a93a2714-7dfc-4e70-a93c-9866341f444c",
+            "name": "Feb 2019 - Emergency Department",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "88aee7ec-e68a-4674-abe7-613a4f66ff1c",
+            "name": "January 2019 - Emergency Department",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "1b291227-c273-4529-ba43-f49694914ee8",
+            "name": "December 2018 - Emergency Department ",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "3780bb25-b828-419f-a25e-95f4cff0b737",
+            "name": "November 2018 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "fb5aa8b4-0914-4a64-8bdc-1be90852abe5",
+            "name": "October 2018 - ED Monthly Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "7e628f61-6bb9-405f-a7d0-b54a126277e7",
+            "name": "Sep 2018 - Emergency Department Summary 1 ",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "92174b60-0fa2-498b-a329-3b1c1b4c1655",
+            "name": "Aug 2018 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "f3e81296-a1ba-4584-9512-731255f14b10",
+            "name": "July 2018 - Emergency Department - Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "e02b4f82-9265-48e1-80d8-1ecc8887e8bc",
+            "name": "June 2018 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "666889aa-5220-46f0-8d89-c4300c3dabb7",
+            "name": "July 2018 - Emergency Department Summary 2",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "9b0d8c1d-ac84-4446-9f95-1553cfd9fae6",
+            "name": "May 2018 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "cf9fd373-5ee4-4eb1-9ecd-480403bae436",
+            "name": "April 2018- Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "abdfaa5a-1046-467d-be19-30f8db399b5a",
+            "name": "March 2018 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "d4732883-32c4-4429-8b64-19b968abf1f4",
+            "name": "February 2018 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "6dbe9ff4-6019-4f64-8dfc-7e6d6542dae5",
+            "name": "January 2018 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "28bd603b-9e7f-4946-8f41-3ebd3900fda9",
+            "name": "December 2017 - Emergency Department Summary 1 ",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "be265f55-79ab-46ad-b3e5-fab08556b76e",
+            "name": "November: Emergency Department - Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "95b83e07-c266-4f4a-af5f-24a9084d63af",
+            "name": "October 2017 - Emergency Department 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "cb330bd1-12ec-4c12-881c-e6b5a9a22685",
+            "name": "September 2017 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "cf40b61a-250d-4186-9ac4-aca3c52bd4f6",
+            "name": "August 2017 - Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "2918dcd3-2da7-42e0-be51-b4748e1107ca",
+            "name": "July 2017 emergency department",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "eb613201-0849-4a95-920d-d00dbe4c69db",
+            "name": "June2017 Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "efec6db8-8ec3-48c9-b1e2-3e172ee29038",
+            "name": "May2017 Emergency Department Summary1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "f1ff9f35-d767-4efb-a993-96d52368ca3f",
+            "name": "April 2017 Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "57c0798f-b145-42db-91f7-78204b8a26e4",
+            "name": "Mar2017 Emergency Department Summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "c18fd09f-9d8e-46bb-b225-5fb574fb6a23",
+            "name": "February 2017 Emergency department summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "e25e6ea4-dc52-4456-81bf-05b02469d4ce",
+            "name": "January 2017 Emergency department summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "ee1b70b8-0b11-43c9-b6f1-e5aff914943b",
+            "name": "December 2016 Emergency department summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "e69de596-4946-461b-b5f1-3b61b1cec675",
+            "name": "November 2016 Emergency department summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "48e1890e-b29d-4923-9af2-93d60adbe252",
+            "name": "October 2016 Emergency department summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "1e1230e8-e2ae-4d3d-9130-20fc30b7c55a",
+            "name": "September 2016 Emergency department summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "bf9bbefb-f5e0-4816-bd98-3bb1a383b080",
+            "name": "August 2016 Emergency department summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "90028625-1991-4154-9023-52055906cf23",
+            "name": "July 2016 Emergency department summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "1aaf6d66-9c4e-424d-b3cf-c0357a6429fa",
+            "name": "June 2016 Emergency department—summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "0a92270f-75d2-4ae3-a771-0702e245b29c",
+            "name": "May 2016 Emergency department—summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "ecb7e269-59c5-4c8c-b9a6-0442170951b5",
+            "name": "April 2016 Emergency department—summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "5fd5c6b9-f94d-439b-b9b3-fb5c5e8e1cfb",
+            "name": "March 2016 Emergency department—summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "ca1e4040-b786-48b5-aba5-943b4c129b2f",
+            "name": "February 2016 Emergency department—summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "aed98c37-1567-4168-becf-c7ae8ba601b4",
+            "name": "January 2016 Emergency department—summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "0cbe35a0-bacf-4d95-a0ab-9b3cb09f8ecf",
+            "name": "December 2015 Emergency department—summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "3750d9eb-ed6a-4e28-9e5e-4855181c5015",
+            "name": "November 2015 Emergency department—summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "4e82a471-8b25-4c99-b83d-3b3dacfb6035",
+            "name": "October 2015 Emergency department—summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "c6caead6-1c7a-49f1-84fe-59ccb54674b3",
+            "name": "September 2015 Emergency department—summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "147b658f-b105-4452-8c74-8c1bb68858c5",
+            "name": "August 2015 Emergency department—summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          },
+          {
+            "id": "c6c06623-aa3e-478c-9751-ab96c1f5f7b8",
+            "name": "July 2015 Emergency department—summary 1",
+            "format": "XLS",
+            "datastore_active": false
+          }
+        ]
+      }
+    ],
+    "accepted_quarters": [
+      {
+        "quarter": "2023-09",
+        "schema": "qld_spaced_triage_traffic",
+        "all_rows": 105,
+        "value_status_counts": {
+          "numeric_text": 105
+        }
+      },
+      {
+        "quarter": "2024-03",
+        "schema": "qld_spaced_triage_traffic",
+        "all_rows": 105,
+        "value_status_counts": {
+          "numeric_text": 105
+        }
+      },
+      {
+        "quarter": "2024-06",
+        "schema": "qld_spaced_triage",
+        "all_rows": 105,
+        "value_status_counts": {
+          "numeric_text": 105
+        }
+      },
+      {
+        "quarter": "2024-09",
+        "schema": "qld_spaced_triage",
+        "all_rows": 105,
+        "value_status_counts": {
+          "numeric_text": 105
+        }
+      },
+      {
+        "quarter": "2024-12",
+        "schema": "qld_underscore_triage",
+        "all_rows": 105,
+        "value_status_counts": {
+          "numeric_text": 105
+        }
+      },
+      {
+        "quarter": "2025-03",
+        "schema": "qld_underscore_triage",
+        "all_rows": 105,
+        "value_status_counts": {
+          "numeric_text": 105
+        }
+      },
+      {
+        "quarter": "2025-06",
+        "schema": "qld_underscore_triage",
+        "all_rows": 105,
+        "value_status_counts": {
+          "numeric_text": 105
+        }
+      },
+      {
+        "quarter": "2025-09",
+        "schema": "qld_underscore_triage",
+        "all_rows": 105,
+        "value_status_counts": {
+          "numeric_text": 105
+        }
+      }
+    ],
+    "unavailable_quarters": [
+      {
+        "quarter": "2020-12",
+        "reason": "no_published_datastore",
+        "resource_id": "1748d848-5e47-49af-b41a-5d5134b992b7"
+      },
+      {
+        "quarter": "2021-03",
+        "reason": "no_published_datastore",
+        "resource_id": "5c592193-0596-4a36-83e8-28d84236d927"
+      },
+      {
+        "quarter": "2021-06",
+        "reason": "no_published_datastore",
+        "resource_id": "70c3d72b-9e21-4233-9917-b923808f3ba5"
+      },
+      {
+        "quarter": "2021-09",
+        "reason": "no_published_datastore",
+        "resource_id": "e826ee7d-8253-4aa8-b9de-730925e0bf2a"
+      },
+      {
+        "quarter": "2021-12",
+        "reason": "no_published_datastore",
+        "resource_id": "5c2b0fcf-bfe6-4f10-9f69-09da59c2246c"
+      },
+      {
+        "quarter": "2022-03",
+        "reason": "no_published_datastore",
+        "resource_id": "dfa3aa9d-9189-49cc-ab9c-fb8bb93c931b"
+      },
+      {
+        "quarter": "2022-06",
+        "reason": "no_published_datastore",
+        "resource_id": "660aec6a-c45e-446e-b1ce-698bbbec8a41"
+      },
+      {
+        "quarter": "2022-09",
+        "reason": "no_published_datastore",
+        "resource_id": "d1ccb552-3d18-4581-a2b6-70c6f8c73ada"
+      },
+      {
+        "quarter": "2022-12",
+        "reason": "no_published_datastore",
+        "resource_id": "ca781f6d-e7ee-41bc-896a-4bc0009d2efc"
+      },
+      {
+        "quarter": "2023-03",
+        "reason": "table_not_accepted",
+        "resource_id": "3dbe0fc7-6243-41c5-9fa1-9bbfbac125ef"
+      },
+      {
+        "quarter": "2023-06",
+        "reason": "table_not_accepted",
+        "resource_id": "bbdbdee1-5ced-4f91-abec-52c33b8928bb"
+      },
+      {
+        "quarter": "2023-12",
+        "reason": "table_not_accepted",
+        "resource_id": "fff38b0c-b6c3-4b73-8c4c-c43dd0d9797d"
+      }
+    ]
+  },
+  "requests": [
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/package_show?id=emergency-departments-quarterly-data",
+      "requested_at": "2026-10-30T07:12:28.968222+00:00",
+      "http_status": 200,
+      "bytes": 54697,
+      "sha256": "6b52e30853d04b188fcc068e7e0018da83df00a10d5246e75a181ee9dccd55f2",
+      "acquired_at": "2026-10-30T07:12:29.021924+00:00",
+      "status": "inspected"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/package_show?id=emergency-departments-pre-oct-20",
+      "requested_at": "2026-10-30T07:12:29.025358+00:00",
+      "http_status": 200,
+      "bytes": 126388,
+      "sha256": "4c6aac20f9e55a87be20cc7f8282e73af759dc9c088ba852595f37d1d71a4f46",
+      "acquired_at": "2026-10-30T07:12:29.062589+00:00",
+      "status": "inspected"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/dataset/aa3844e0-1b00-4f7b-be91-ef9fb7592c65/resource/492bb29f-bc29-4cda-ad2e-a7ea747de079/download/ed_website_descriptions.xlsx",
+      "requested_at": "2026-10-30T07:12:29.064055+00:00",
+      "http_status": 202,
+      "status": "refused",
+      "reason": "unexpected_status"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=0b85e426-a80c-4397-89a9-e8040cee48e5&limit=100",
+      "requested_at": "2026-10-30T07:12:29.075220+00:00",
+      "http_status": 200,
+      "bytes": 2152,
+      "sha256": "00c53d5fe43711564640c785444d4f41ae783b0ae2a30e82f30918b4487711dc",
+      "acquired_at": "2026-10-30T07:12:29.101771+00:00",
+      "status": "inspected"
+    },
+    {
+      "url": "https://data.gov.au/data/api/3/action/package_show?id=dss-income-support-recipients-monthly-time-series",
+      "requested_at": "2026-10-30T07:12:29.102011+00:00",
+      "http_status": 200,
+      "bytes": 5430,
+      "sha256": "d3ddebcd66c11e98439b63d4b63f1c8f11d58df6943ac651e23d8b263353bcc3",
+      "acquired_at": "2026-10-30T07:12:29.861910+00:00",
+      "status": "inspected"
+    },
+    {
+      "url": "https://data.gov.au/data/dataset/6ed2d8c0-0162-46da-bbfe-d493f6190af8/resource/d0472de2-0c75-45be-9093-7698a30f0e57/download/september-2026-dss-income-support-recipient-monthly-time-series.xlsx",
+      "requested_at": "2026-10-30T07:12:29.863723+00:00",
+      "http_status": 200,
+      "bytes": 900633,
+      "sha256": "af25df58fec196687935f950c1802640394dbe381ecada03fc387edb70b60d52",
+      "acquired_at": "2026-10-30T07:12:30.819182+00:00",
+      "status": "inspected"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=3dbe0fc7-6243-41c5-9fa1-9bbfbac125ef&limit=1000",
+      "requested_at": "2026-10-30T07:12:32.329143+00:00",
+      "http_status": 200,
+      "bytes": 459795,
+      "sha256": "bcf552d1d9ea27ebb2aa46152765dd9296fbba28e31eb9bdf91f8591053f93cf",
+      "acquired_at": "2026-10-30T07:12:32.355772+00:00",
+      "status": "refused",
+      "reason": "invalid_entity_code"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=bbdbdee1-5ced-4f91-abec-52c33b8928bb&limit=1000",
+      "requested_at": "2026-10-30T07:12:32.359374+00:00",
+      "http_status": 200,
+      "bytes": 465619,
+      "sha256": "2aa844559823c43a2c079817dafe21551bd19dfd55837bf6cb921877f1744b75",
+      "acquired_at": "2026-10-30T07:12:32.392753+00:00",
+      "status": "refused",
+      "reason": "invalid_entity_code"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=400c41fe-9112-4023-aec3-c906393abd14&limit=1000",
+      "requested_at": "2026-10-30T07:12:32.396055+00:00",
+      "http_status": 200,
+      "bytes": 473296,
+      "sha256": "da000b106893420b11979cd8b8e40d75e52862583d412e6142c946a42a712fe1",
+      "acquired_at": "2026-10-30T07:12:32.428573+00:00",
+      "status": "inspected"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=fff38b0c-b6c3-4b73-8c4c-c43dd0d9797d&limit=1000",
+      "requested_at": "2026-10-30T07:12:32.435670+00:00",
+      "http_status": 200,
+      "bytes": 469348,
+      "sha256": "4b9dd4f7a40ef019b711ca88dfce231050c5bda45adb3d4590061f81fd08a423",
+      "acquired_at": "2026-10-30T07:12:32.462844+00:00",
+      "status": "refused",
+      "reason": "invalid_entity_code"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=ce4b7a8c-11bd-489b-bf55-fc0872dc540f&limit=1000",
+      "requested_at": "2026-10-30T07:12:32.466026+00:00",
+      "http_status": 200,
+      "bytes": 474855,
+      "sha256": "fa0c95fcc415b22c7dadb53e46ca589bde2d6ab347043ca688810e1244672d69",
+      "acquired_at": "2026-10-30T07:12:32.493512+00:00",
+      "status": "inspected"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=f1229647-ac37-43d5-91ba-092a6f59152c&limit=1000",
+      "requested_at": "2026-10-30T07:12:32.500213+00:00",
+      "http_status": 200,
+      "bytes": 453601,
+      "sha256": "8d7c0e127a6ce5368277ec8bb1cd2c07e18b59a0ca2d7e37af9621efbd468d9d",
+      "acquired_at": "2026-10-30T07:12:32.530132+00:00",
+      "status": "inspected"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=adfe4a98-a479-4c1e-a34b-1050a6386ff4&limit=1000",
+      "requested_at": "2026-10-30T07:12:32.536533+00:00",
+      "http_status": 200,
+      "bytes": 455877,
+      "sha256": "16d71e9b901b9da42c896fb7452519d220d6468fc90851e4d309a23293324cd4",
+      "acquired_at": "2026-10-30T07:12:32.564807+00:00",
+      "status": "inspected"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=81455b62-578a-441a-a7dd-830dc2634cba&limit=1000",
+      "requested_at": "2026-10-30T07:12:32.571067+00:00",
+      "http_status": 200,
+      "bytes": 453569,
+      "sha256": "0952ccc67ea42c4c930618c17e8286a29c1a8d048018d1577244c64f50f7d0e7",
+      "acquired_at": "2026-10-30T07:12:32.608719+00:00",
+      "status": "inspected"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=5ff94eab-e75d-4166-b80a-98b73262f971&limit=1000",
+      "requested_at": "2026-10-30T07:12:32.615281+00:00",
+      "http_status": 200,
+      "bytes": 453523,
+      "sha256": "ad6687e94d5ac6d8bc4fc4951803fcd8d2fe43939fcdadd62e29c41ae3bc6bb5",
+      "acquired_at": "2026-10-30T07:12:32.647807+00:00",
+      "status": "inspected"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=e634fc0f-c77d-45bc-8196-5a983ddcffdd&limit=1000",
+      "requested_at": "2026-10-30T07:12:32.654318+00:00",
+      "http_status": 200,
+      "bytes": 453650,
+      "sha256": "3d32d0308c5f2fbee0b83ec7f6f9caf2aa612fe596c43ec6b8b44ac5c25cdd8e",
+      "acquired_at": "2026-10-30T07:12:32.684166+00:00",
+      "status": "inspected"
+    },
+    {
+      "url": "https://www.data.qld.gov.au/api/3/action/datastore_search?resource_id=a9634f60-dd88-4d40-8e80-efaf9b6135c5&limit=1000",
+      "requested_at": "2026-10-30T07:12:32.690746+00:00",
+      "http_status": 200,
+      "bytes": 453679,
+      "sha256": "54fecae1bec4a6aa1c5a8027a8e38dc923f0d494b2fd5f2248f378ded72bc8ec",
+      "acquired_at": "2026-10-30T07:12:32.717012+00:00",
+      "status": "inspected"
+    }
+  ]
+}

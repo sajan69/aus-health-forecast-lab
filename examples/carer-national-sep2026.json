@@ -1,0 +1,738 @@
+{
+  "schema_version": 1,
+  "source_release": "DSS September 2026",
+  "series": "Carer Payment",
+  "geography": "Australia",
+  "unit": "published rounded recipient count",
+  "time_basis": "last Friday of month; workbook dates label reporting month",
+  "rounding": "nearest 5; source maps values 1..7 to 5; zero is actual zero",
+  "population": "current including zero-rate, or suspended, on Centrelink system",
+  "raw_sha256": "af25df58fec196687935f950c1802640394dbe381ecada03fc387edb70b60d52",
+  "projection_sha256": "6a72d3c5d9f5dac939c7173d5fc883cff4a28f5732e203e71954beb0c58b6c2c",
+  "rows": [
+    {
+      "month": "2012-01",
+      "published_recipients": 197435
+    },
+    {
+      "month": "2012-02",
+      "published_recipients": 198860
+    },
+    {
+      "month": "2012-03",
+      "published_recipients": 200755
+    },
+    {
+      "month": "2012-04",
+      "published_recipients": 201815
+    },
+    {
+      "month": "2012-05",
+      "published_recipients": 203510
+    },
+    {
+      "month": "2012-06",
+      "published_recipients": 206055
+    },
+    {
+      "month": "2012-07",
+      "published_recipients": 206780
+    },
+    {
+      "month": "2012-08",
+      "published_recipients": 208460
+    },
+    {
+      "month": "2012-09",
+      "published_recipients": 209740
+    },
+    {
+      "month": "2012-10",
+      "published_recipients": 210770
+    },
+    {
+      "month": "2012-11",
+      "published_recipients": 212745
+    },
+    {
+      "month": "2012-12",
+      "published_recipients": 213905
+    },
+    {
+      "month": "2013-01",
+      "published_recipients": 215050
+    },
+    {
+      "month": "2013-02",
+      "published_recipients": 216075
+    },
+    {
+      "month": "2013-03",
+      "published_recipients": 218145
+    },
+    {
+      "month": "2013-04",
+      "published_recipients": 219955
+    },
+    {
+      "month": "2013-05",
+      "published_recipients": 221505
+    },
+    {
+      "month": "2013-06",
+      "published_recipients": 222500
+    },
+    {
+      "month": "2013-07",
+      "published_recipients": 223815
+    },
+    {
+      "month": "2013-08",
+      "published_recipients": 226010
+    },
+    {
+      "month": "2013-09",
+      "published_recipients": 227485
+    },
+    {
+      "month": "2013-10",
+      "published_recipients": 228715
+    },
+    {
+      "month": "2013-11",
+      "published_recipients": 231450
+    },
+    {
+      "month": "2013-12",
+      "published_recipients": 233590
+    },
+    {
+      "month": "2014-01",
+      "published_recipients": 235955
+    },
+    {
+      "month": "2014-02",
+      "published_recipients": 238400
+    },
+    {
+      "month": "2014-03",
+      "published_recipients": 239730
+    },
+    {
+      "month": "2014-04",
+      "published_recipients": 240555
+    },
+    {
+      "month": "2014-05",
+      "published_recipients": 242685
+    },
+    {
+      "month": "2014-06",
+      "published_recipients": 243855
+    },
+    {
+      "month": "2014-07",
+      "published_recipients": 244530
+    },
+    {
+      "month": "2014-08",
+      "published_recipients": 245110
+    },
+    {
+      "month": "2014-09",
+      "published_recipients": 245700
+    },
+    {
+      "month": "2014-10",
+      "published_recipients": 246620
+    },
+    {
+      "month": "2014-11",
+      "published_recipients": 248285
+    },
+    {
+      "month": "2014-12",
+      "published_recipients": 249435
+    },
+    {
+      "month": "2015-01",
+      "published_recipients": 250005
+    },
+    {
+      "month": "2015-02",
+      "published_recipients": 250890
+    },
+    {
+      "month": "2015-03",
+      "published_recipients": 252040
+    },
+    {
+      "month": "2015-04",
+      "published_recipients": 253110
+    },
+    {
+      "month": "2015-05",
+      "published_recipients": 254445
+    },
+    {
+      "month": "2015-06",
+      "published_recipients": 255545
+    },
+    {
+      "month": "2015-07",
+      "published_recipients": 256310
+    },
+    {
+      "month": "2015-08",
+      "published_recipients": 257060
+    },
+    {
+      "month": "2015-09",
+      "published_recipients": 257305
+    },
+    {
+      "month": "2015-10",
+      "published_recipients": 257360
+    },
+    {
+      "month": "2015-11",
+      "published_recipients": 257740
+    },
+    {
+      "month": "2015-12",
+      "published_recipients": 258245
+    },
+    {
+      "month": "2016-01",
+      "published_recipients": 258175
+    },
+    {
+      "month": "2016-02",
+      "published_recipients": 258565
+    },
+    {
+      "month": "2016-03",
+      "published_recipients": 258705
+    },
+    {
+      "month": "2016-04",
+      "published_recipients": 259235
+    },
+    {
+      "month": "2016-05",
+      "published_recipients": 259760
+    },
+    {
+      "month": "2016-06",
+      "published_recipients": 260595
+    },
+    {
+      "month": "2016-07",
+      "published_recipients": 261625
+    },
+    {
+      "month": "2016-08",
+      "published_recipients": 262430
+    },
+    {
+      "month": "2016-09",
+      "published_recipients": 264110
+    },
+    {
+      "month": "2016-10",
+      "published_recipients": 264450
+    },
+    {
+      "month": "2016-11",
+      "published_recipients": 264390
+    },
+    {
+      "month": "2016-12",
+      "published_recipients": 264265
+    },
+    {
+      "month": "2017-01",
+      "published_recipients": 263215
+    },
+    {
+      "month": "2017-02",
+      "published_recipients": 263755
+    },
+    {
+      "month": "2017-03",
+      "published_recipients": 263915
+    },
+    {
+      "month": "2017-04",
+      "published_recipients": 264320
+    },
+    {
+      "month": "2017-05",
+      "published_recipients": 264305
+    },
+    {
+      "month": "2017-06",
+      "published_recipients": 263880
+    },
+    {
+      "month": "2017-07",
+      "published_recipients": 263710
+    },
+    {
+      "month": "2017-08",
+      "published_recipients": 263510
+    },
+    {
+      "month": "2017-09",
+      "published_recipients": 264160
+    },
+    {
+      "month": "2017-10",
+      "published_recipients": 265680
+    },
+    {
+      "month": "2017-11",
+      "published_recipients": 267440
+    },
+    {
+      "month": "2017-12",
+      "published_recipients": 269140
+    },
+    {
+      "month": "2018-01",
+      "published_recipients": 269965
+    },
+    {
+      "month": "2018-02",
+      "published_recipients": 270160
+    },
+    {
+      "month": "2018-03",
+      "published_recipients": 270900
+    },
+    {
+      "month": "2018-04",
+      "published_recipients": 271830
+    },
+    {
+      "month": "2018-05",
+      "published_recipients": 272835
+    },
+    {
+      "month": "2018-06",
+      "published_recipients": 274415
+    },
+    {
+      "month": "2018-07",
+      "published_recipients": 274970
+    },
+    {
+      "month": "2018-08",
+      "published_recipients": 275625
+    },
+    {
+      "month": "2018-09",
+      "published_recipients": 276195
+    },
+    {
+      "month": "2018-10",
+      "published_recipients": 276785
+    },
+    {
+      "month": "2018-11",
+      "published_recipients": 277265
+    },
+    {
+      "month": "2018-12",
+      "published_recipients": 277380
+    },
+    {
+      "month": "2019-01",
+      "published_recipients": 278280
+    },
+    {
+      "month": "2019-02",
+      "published_recipients": 278750
+    },
+    {
+      "month": "2019-03",
+      "published_recipients": 279305
+    },
+    {
+      "month": "2019-04",
+      "published_recipients": 279505
+    },
+    {
+      "month": "2019-05",
+      "published_recipients": 280875
+    },
+    {
+      "month": "2019-06",
+      "published_recipients": 282100
+    },
+    {
+      "month": "2019-07",
+      "published_recipients": 282210
+    },
+    {
+      "month": "2019-08",
+      "published_recipients": 282250
+    },
+    {
+      "month": "2019-09",
+      "published_recipients": 281940
+    },
+    {
+      "month": "2019-10",
+      "published_recipients": 282445
+    },
+    {
+      "month": "2019-11",
+      "published_recipients": 283440
+    },
+    {
+      "month": "2019-12",
+      "published_recipients": 284255
+    },
+    {
+      "month": "2020-01",
+      "published_recipients": 285475
+    },
+    {
+      "month": "2020-02",
+      "published_recipients": 286775
+    },
+    {
+      "month": "2020-03",
+      "published_recipients": 290125
+    },
+    {
+      "month": "2020-04",
+      "published_recipients": 292765
+    },
+    {
+      "month": "2020-05",
+      "published_recipients": 294190
+    },
+    {
+      "month": "2020-06",
+      "published_recipients": 294275
+    },
+    {
+      "month": "2020-07",
+      "published_recipients": 294135
+    },
+    {
+      "month": "2020-08",
+      "published_recipients": 294400
+    },
+    {
+      "month": "2020-09",
+      "published_recipients": 294465
+    },
+    {
+      "month": "2020-10",
+      "published_recipients": 295370
+    },
+    {
+      "month": "2020-11",
+      "published_recipients": 295970
+    },
+    {
+      "month": "2020-12",
+      "published_recipients": 297455
+    },
+    {
+      "month": "2021-01",
+      "published_recipients": 297610
+    },
+    {
+      "month": "2021-02",
+      "published_recipients": 298860
+    },
+    {
+      "month": "2021-03",
+      "published_recipients": 299310
+    },
+    {
+      "month": "2021-04",
+      "published_recipients": 299300
+    },
+    {
+      "month": "2021-05",
+      "published_recipients": 299820
+    },
+    {
+      "month": "2021-06",
+      "published_recipients": 300120
+    },
+    {
+      "month": "2021-07",
+      "published_recipients": 299240
+    },
+    {
+      "month": "2021-08",
+      "published_recipients": 299660
+    },
+    {
+      "month": "2021-09",
+      "published_recipients": 299565
+    },
+    {
+      "month": "2021-10",
+      "published_recipients": 300060
+    },
+    {
+      "month": "2021-11",
+      "published_recipients": 300785
+    },
+    {
+      "month": "2021-12",
+      "published_recipients": 301195
+    },
+    {
+      "month": "2022-01",
+      "published_recipients": 300435
+    },
+    {
+      "month": "2022-02",
+      "published_recipients": 301085
+    },
+    {
+      "month": "2022-03",
+      "published_recipients": 300715
+    },
+    {
+      "month": "2022-04",
+      "published_recipients": 300595
+    },
+    {
+      "month": "2022-05",
+      "published_recipients": 300680
+    },
+    {
+      "month": "2022-06",
+      "published_recipients": 301215
+    },
+    {
+      "month": "2022-07",
+      "published_recipients": 301335
+    },
+    {
+      "month": "2022-08",
+      "published_recipients": 302465
+    },
+    {
+      "month": "2022-09",
+      "published_recipients": 302445
+    },
+    {
+      "month": "2022-10",
+      "published_recipients": 302420
+    },
+    {
+      "month": "2022-11",
+      "published_recipients": 303235
+    },
+    {
+      "month": "2022-12",
+      "published_recipients": 303520
+    },
+    {
+      "month": "2023-01",
+      "published_recipients": 303010
+    },
+    {
+      "month": "2023-02",
+      "published_recipients": 303550
+    },
+    {
+      "month": "2023-03",
+      "published_recipients": 304500
+    },
+    {
+      "month": "2023-04",
+      "published_recipients": 305080
+    },
+    {
+      "month": "2023-05",
+      "published_recipients": 305320
+    },
+    {
+      "month": "2023-06",
+      "published_recipients": 305330
+    },
+    {
+      "month": "2023-07",
+      "published_recipients": 305180
+    },
+    {
+      "month": "2023-08",
+      "published_recipients": 304760
+    },
+    {
+      "month": "2023-09",
+      "published_recipients": 304480
+    },
+    {
+      "month": "2023-10",
+      "published_recipients": 305010
+    },
+    {
+      "month": "2023-11",
+      "published_recipients": 305205
+    },
+    {
+      "month": "2023-12",
+      "published_recipients": 306385
+    },
+    {
+      "month": "2024-01",
+      "published_recipients": 306350
+    },
+    {
+      "month": "2024-02",
+      "published_recipients": 306835
+    },
+    {
+      "month": "2024-03",
+      "published_recipients": 306985
+    },
+    {
+      "month": "2024-04",
+      "published_recipients": 308410
+    },
+    {
+      "month": "2024-05",
+      "published_recipients": 311330
+    },
+    {
+      "month": "2024-06",
+      "published_recipients": 314320
+    },
+    {
+      "month": "2024-07",
+      "published_recipients": 315770
+    },
+    {
+      "month": "2024-08",
+      "published_recipients": 316525
+    },
+    {
+      "month": "2024-09",
+      "published_recipients": 316915
+    },
+    {
+      "month": "2024-10",
+      "published_recipients": 317580
+    },
+    {
+      "month": "2024-11",
+      "published_recipients": 318805
+    },
+    {
+      "month": "2024-12",
+      "published_recipients": 319715
+    },
+    {
+      "month": "2025-01",
+      "published_recipients": 320195
+    },
+    {
+      "month": "2025-02",
+      "published_recipients": 321695
+    },
+    {
+      "month": "2025-03",
+      "published_recipients": 322415
+    },
+    {
+      "month": "2025-04",
+      "published_recipients": 323535
+    },
+    {
+      "month": "2025-05",
+      "published_recipients": 325080
+    },
+    {
+      "month": "2025-06",
+      "published_recipients": 325845
+    },
+    {
+      "month": "2025-07",
+      "published_recipients": 325845
+    },
+    {
+      "month": "2025-08",
+      "published_recipients": 325670
+    },
+    {
+      "month": "2025-09",
+      "published_recipients": 326065
+    },
+    {
+      "month": "2025-10",
+      "published_recipients": 326320
+    },
+    {
+      "month": "2025-11",
+      "published_recipients": 327460
+    },
+    {
+      "month": "2025-12",
+      "published_recipients": 328580
+    },
+    {
+      "month": "2026-01",
+      "published_recipients": 328825
+    },
+    {
+      "month": "2026-02",
+      "published_recipients": 329435
+    },
+    {
+      "month": "2026-03",
+      "published_recipients": 329745
+    },
+    {
+      "month": "2026-04",
+      "published_recipients": 329820
+    },
+    {
+      "month": "2026-05",
+      "published_recipients": 331250
+    },
+    {
+      "month": "2026-06",
+      "published_recipients": 332590
+    },
+    {
+      "month": "2026-07",
+      "published_recipients": 332565
+    },
+    {
+      "month": "2026-08",
+      "published_recipients": 332690
+    },
+    {
+      "month": "2026-09",
+      "published_recipients": 333520
+    }
+  ],
+  "attribution": {
+    "publisher": "Australian Government Department of Social Services",
+    "title": "DSS Income Support Recipients – Monthly Time Series",
+    "release": "September 2026",
+    "source_url": "https://data.gov.au/data/dataset/6ed2d8c0-0162-46da-bbfe-d493f6190af8/resource/d0472de2-0c75-45be-9093-7698a30f0e57/download/september-2026-dss-income-support-recipient-monthly-time-series.xlsx",
+    "catalog_url": "https://data.gov.au/data/api/3/action/package_show?id=dss-income-support-recipients-monthly-time-series",
+    "license": "CC BY 2.5 Australia",
+    "license_url": "https://creativecommons.org/licenses/by/2.5/au/",
+    "changes": "Selected national Carer Payment All recipients; renamed fields and normalised monthly labels; published totals unchanged.",
+    "endorsement": "No DSS endorsement implied."
+  },
+  "acquired_at": "2026-10-30T07:12:30.819182+00:00",
+  "evidence": {
+    "commit": "0af56c514d2bda4178ccfc4c4a487a8b408c56a4",
+    "run_url": "https://github.com/sajan69/aus-health-forecast-lab/actions/runs/41018651202"
+  }
+}
