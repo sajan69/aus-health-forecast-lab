@@ -69,8 +69,10 @@ def xml(body: bytes) -> ET.Element:
     return ET.fromstring(body)
 
 
-def workbook_inventory(body: bytes) -> dict:
+def workbook_inventory(body: bytes, *, preview_rows: int = 6) -> dict:
     """Read ZIP members in memory; never extract paths or evaluate formulas."""
+    if type(preview_rows) is not int or not 1 <= preview_rows <= 30:
+        raise AuditError('preview_limit')
     if len(body) > MAX_DOWNLOAD:
         raise AuditError("download_limit")
     with zipfile.ZipFile(io.BytesIO(body)) as book:
@@ -114,7 +116,7 @@ def workbook_inventory(body: bytes) -> dict:
                     elif cell.attrib.get("t") == "inlineStr":
                         value = "".join(cell.find("s:is", NS).itertext())
                     texts.append(value)
-                if rows <= 6:
+                if rows <= preview_rows:
                     preview.append(texts[:15])
                 joined = " | ".join(texts)
                 if any(s in joined.lower() for s in ("copyright", "creative commons", "licence", "license", "monthly", "by month", "not available", "suppressed")):

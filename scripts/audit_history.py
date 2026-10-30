@@ -102,8 +102,16 @@ def inspect_table(data, expected_quarter):
         raise AuditError('table_failed')
     result = data['result']
     fields = result['fields']
-    if len(fields) != len(QLD_FIELDS) or {f['id'] for f in fields} != QLD_FIELDS:
+    field_names = {f['id'] for f in fields}
+    older_fields = (QLD_FIELDS - {'Triage_Category'}) | {'Triage Category'}
+    schemas = {
+        frozenset(QLD_FIELDS): ('qld_underscore_triage', 'Triage_Category'),
+        frozenset(older_fields): ('qld_spaced_triage', 'Triage Category'),
+        frozenset(older_fields | {'Median Wait Traffic Light'}): ('qld_spaced_triage_traffic', 'Triage Category'),
+    }
+    if len(fields) != len(field_names) or frozenset(field_names) not in schemas:
         raise SchemaError(fields)
+    schema, triage_field = schemas[frozenset(field_names)]
     records = result['records']
     if not isinstance(records, list) or len(records) > 1000 or type(result.get('total')) is not int:
         raise AuditError('table_limit')
@@ -111,12 +119,12 @@ def inspect_table(data, expected_quarter):
         raise AuditError('incomplete_page')
     selected, all_keys, categories = {}, set(), Counter()
     for r in records:
-        if not isinstance(r, dict) or set(r) != QLD_FIELDS:
+        if not isinstance(r, dict) or set(r) != field_names:
             raise AuditError('unreviewed_record_fields')
         quarter = parse_quarter(r['Last Month in QTR'])
         if quarter != expected_quarter:
             raise AuditError('resource_period_mismatch')
-        code, label, triage = r['Facility/HHS Code'], r['Facility/HHS Desc'], r['Triage_Category']
+        code, label, triage = r['Facility/HHS Code'], r['Facility/HHS Desc'], r[triage_field]
         if not isinstance(code, str) or not re.fullmatch(r'[A-Za-z0-9_-]{1,32}', code):
             raise AuditError('invalid_entity_code')
         if not isinstance(label, str) or not 1 <= len(label) <= 200 or any(ord(c) < 32 for c in label):
@@ -136,7 +144,7 @@ def inspect_table(data, expected_quarter):
         if code in selected:
             raise AuditError('duplicate_all_row')
         selected[code] = row
-    return {'quarter': expected_quarter, 'reported_rows': len(records),
+    return {'quarter': expected_quarter, 'schema': schema, 'reported_rows': len(records),
             'triage_rows': dict(sorted(categories.items())), 'all_rows': len(selected),
             'value_status_counts': dict(Counter(x['value_status'] for x in selected.values())),
             'entities': {code: r['entity_label'] for code, r in sorted(selected.items())}}, list(selected.values())
@@ -199,13 +207,16 @@ def acquire(out):
     # candidate only. This does not join it to ED data or infer health needs.
     dss_catalog = reader.read('https://data.gov.au/data/api/3/action/package_show?id=dss-income-support-recipients-monthly-time-series',
                               'dss-catalog.json', strict_json)
-    dss_inventory = None
+    dss_inventory, dss_workbook = None, None
     if dss_catalog and dss_catalog.get('success') is True:
         dc = dss_catalog['result']
         dss_inventory = {'title': dc.get('title'), 'license_id': dc.get('license_id'),
                          'license_title': dc.get('license_title'), 'notes': dc.get('notes'),
                          'resources': [{k: r.get(k) for k in ('id', 'name', 'url', 'format', 'last_modified')}
                                        for r in dc.get('resources', [])[:10]]}
+        expected_url = 'https://data.gov.au/data/dataset/6ed2d8c0-0162-46da-bbfe-d493f6190af8/resource/d0472de2-0c75-45be-9093-7698a30f0e57/download/september-2026-dss-income-support-recipient-monthly-time-series.xlsx'
+        if dc.get('license_id') == 'cc-by-2.5' and any(r.get('url') == expected_url for r in dc.get('resources', [])):
+            dss_workbook = reader.read(expected_url, 'dss-sep26.xlsx', lambda b: workbook_inventory(b, preview_rows=30))
     summaries, projected, unavailable = [], [], []
     if catalogs[0]:
         dated = [(quarter_resource(r), r) for r in catalogs[0]['resources']]
@@ -229,6 +240,7 @@ def acquire(out):
               'completed_at': datetime.now(timezone.utc).isoformat(), 'catalogs': catalogs,
               'quarterly_description': description, 'legacy_definition': legacy_definition,
               'dss_candidate_catalog': dss_inventory,
+              'dss_candidate_workbook': dss_workbook,
               'quarter_tables': summaries, 'unavailable_quarters': unavailable,
               'common_entity_codes': common, 'requests': reader.requests,
               'model_ready': False, 'limitation': 'Lexical values and coverage inventory do not establish compatible measure definitions or a valid forecasting target.'}

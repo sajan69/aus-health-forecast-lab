@@ -53,6 +53,18 @@ class HistoryTests(unittest.TestCase):
             with self.subTest(mode=mode), self.assertRaises(AuditError):
                 inspect_table(d, '2025-09')
 
+    def test_reviewed_schema_versions_project_same_all_measure(self):
+        for traffic in [False, True]:
+            d = table()
+            r = d['result']['records'][0]
+            r['Triage Category'] = r.pop('Triage_Category')
+            if traffic: r['Median Wait Traffic Light'] = 'irrelevant presentation colour'
+            d['result']['fields'] = [{'id': k} for k in r]
+            summary, rows = inspect_table(d, '2025-09')
+            self.assertIn('spaced_triage', summary['schema'])
+            self.assertEqual(rows[0]['observed_numeric_text'], 1234)
+            self.assertNotIn('Traffic', str(rows))
+
     def test_catalogue_licence_and_duplicate_ids(self):
         d = {'success': True, 'result': {'license_id': 'CC-BY-4.0', 'resources': []}}
         self.assertEqual(resource_summary(d)['resources'], [])
